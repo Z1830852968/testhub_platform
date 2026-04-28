@@ -14,7 +14,7 @@
           active-text-color="#1890ff"
         >
           <!-- 接口测试模块菜单 -->
-          <template v-else-if="currentModule === 'api-testing'">
+          <template v-if="currentModule === 'api-testing'">
             <el-menu-item index="/api-testing/dashboard">
               <el-icon><Odometer /></el-icon>
               <span>{{ $t('menu.dashboard') }}</span>
