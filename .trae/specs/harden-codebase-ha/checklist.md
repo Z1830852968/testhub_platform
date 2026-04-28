@@ -1,0 +1,7 @@
+- [ ] 前端构建 `npm run build` 通过，且无任何 “Failed to resolve import” / “Invalid end tag” 之类错误。
+- [ ] 前端路由无死链：所有 route component（含动态导入）均存在且可加载。
+- [ ] AI 系统探索：未配置 explorer 模型时，启动探索会被阻断并提示如何配置；配置完成后可正常创建探索运行并产出 FeatureItem/Artifact。
+- [ ] 需求分析/用例生成：启动前置检查可用，缺少关键配置时给出明确提示与跳转入口。
+- [ ] AI 测试执行/报告：执行完成后可进入报告页；报告页异常时不白屏，有可恢复错误态。
+- [ ] 后端探索 API：`POST /explorations/runs/`、`GET /explorations/runs/?project=`、`GET /explorations/features/?run=` 返回符合预期且错误码语义清晰。
+- [ ] 代码清理：已移除模块的目录/路由/接口封装无残留引用（通过 grep/构建扫描验证）。
