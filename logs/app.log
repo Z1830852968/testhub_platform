@@ -223,3 +223,11 @@ INFO 2026-04-28 10:12:18,393 autoreload 90839 140105102642048 /workspace/backend
 INFO 2026-04-28 10:12:18,393 autoreload 90839 140105102642048 /workspace/backend/settings.py changed, reloading.
 INFO 2026-04-28 10:12:19,321 autoreload 95827 140230465981312 Watching for file changes with StatReloader
 INFO 2026-04-28 10:12:19,321 autoreload 95827 140230465981312 Watching for file changes with StatReloader
+INFO 2026-04-28 10:39:42,365 autoreload 141440 140081053178752 Watching for file changes with StatReloader
+INFO 2026-04-28 10:39:42,365 autoreload 141440 140081053178752 Watching for file changes with StatReloader
+WARNING 2026-04-28 10:39:54,072 log 141440 140080808986304 Bad Request: /api/auth/login/
+WARNING 2026-04-28 10:39:54,072 log 141440 140080808986304 Bad Request: /api/auth/login/
+WARNING 2026-04-28 10:39:54,073 basehttp 141440 140080808986304 "POST /api/auth/login/ HTTP/1.1" 400 49
+WARNING 2026-04-28 10:39:54,073 basehttp 141440 140080808986304 "POST /api/auth/login/ HTTP/1.1" 400 49
+INFO 2026-04-28 10:40:06,138 basehttp 141440 140080808986304 "POST /api/auth/login/ HTTP/1.1" 200 831
+INFO 2026-04-28 10:40:06,138 basehttp 141440 140080808986304 "POST /api/auth/login/ HTTP/1.1" 200 831
