@@ -46,23 +46,9 @@
           <p>{{ $t('home.aiCaseGenerationDesc') }}</p>
         </div>
 
-        <!-- 接口测试 -->
-        <div class="nav-card" @click="handleNavigate('api')" role="button" tabindex="0">
-          <div class="card-icon api-icon">
-            <el-icon><Link /></el-icon>
-          </div>
-          <h3>{{ $t('home.apiTesting') }}</h3>
-          <p>{{ $t('home.apiTestingDesc') }}</p>
-        </div>
 
-        <!-- UI自动化测试 -->
-        <div class="nav-card" @click="handleNavigate('ui')" role="button" tabindex="0">
-          <div class="card-icon ui-icon">
-            <el-icon><Monitor /></el-icon>
-          </div>
-          <h3>{{ $t('home.uiAutomation') }}</h3>
-          <p>{{ $t('home.uiAutomationDesc') }}</p>
-        </div>
+
+
 
         <!-- 数据工厂 -->
         <div class="nav-card" @click="handleNavigate('data')" role="button" tabindex="0">
@@ -73,14 +59,7 @@
           <p>{{ $t('home.dataFactoryDesc') }}</p>
         </div>
 
-        <!-- APP自动化测试 -->
-        <div class="nav-card" @click="handleNavigate('app')" role="button" tabindex="0">
-          <div class="card-icon app-icon">
-            <el-icon><Cellphone /></el-icon>
-          </div>
-          <h3>APP自动化测试</h3>
-          <p>基于Airtest的Android APP自动化测试</p>
-        </div>
+
 
         <!-- AI 智能模式 -->
         <div class="nav-card" @click="handleNavigate('ai-intelligent')" role="button" tabindex="0">
@@ -154,9 +133,6 @@ const handleLogout = () => {
 const handleNavigate = (type) => {
   const routes = {
     'ai': '/ai-intelligent-mode/projects',
-    'api': '/api-testing/dashboard',
-    'ui': '/ui-automation/dashboard',
-    'app': '/app-automation/dashboard',
     'ai-intelligent': '/ai-intelligent-mode/testing',
     'assistant': '/ai-intelligent-mode/assistant',
     'config': '/configuration/ai-model',

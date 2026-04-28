@@ -13,148 +13,8 @@
           text-color="#fff"
           active-text-color="#1890ff"
         >
-          <!-- 接口测试模块菜单 -->
-          <template v-if="currentModule === 'api-testing'">
-            <el-menu-item index="/api-testing/dashboard">
-              <el-icon><Odometer /></el-icon>
-              <span>{{ $t('menu.dashboard') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/api-testing/projects">
-              <el-icon><Folder /></el-icon>
-              <span>{{ $t('menu.projectManagement') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/api-testing/interfaces">
-              <el-icon><Link /></el-icon>
-              <span>{{ $t('menu.interfaceManagement') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/api-testing/automation">
-              <el-icon><VideoPlay /></el-icon>
-              <span>{{ $t('menu.automationTesting') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/api-testing/history">
-              <el-icon><Timer /></el-icon>
-              <span>{{ $t('menu.requestHistory') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/api-testing/environments">
-              <el-icon><Setting /></el-icon>
-              <span>{{ $t('menu.environmentManagement') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/api-testing/reports">
-              <el-icon><DataAnalysis /></el-icon>
-              <span>{{ $t('menu.testReport') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/api-testing/scheduled-tasks">
-              <el-icon><AlarmClock /></el-icon>
-              <span>{{ $t('menu.scheduledTasks') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/api-testing/notification-logs">
-              <el-icon><Bell /></el-icon>
-              <span>{{ $t('menu.notificationList') }}</span>
-            </el-menu-item>
-          </template>
-
-          <!-- UI自动化测试模块菜单 -->
-          <template v-else-if="currentModule === 'ui-automation'">
-            <el-menu-item index="/ui-automation/dashboard">
-              <el-icon><Odometer /></el-icon>
-              <span>{{ $t('menu.dashboard') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/ui-automation/projects">
-              <el-icon><Folder /></el-icon>
-              <span>{{ $t('menu.projectManagement') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/ui-automation/elements-enhanced">
-              <el-icon><Aim /></el-icon>
-              <span>{{ $t('menu.elementManagement') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/ui-automation/test-cases">
-              <el-icon><Document /></el-icon>
-              <span>{{ $t('menu.caseManagement') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/ui-automation/scripts-enhanced">
-              <el-icon><Edit /></el-icon>
-              <span>{{ $t('menu.scriptGeneration') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/ui-automation/scripts">
-              <el-icon><DocumentCopy /></el-icon>
-              <span>{{ $t('menu.scriptList') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/ui-automation/suites">
-              <el-icon><Collection /></el-icon>
-              <span>{{ $t('menu.suiteManagement') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/ui-automation/executions">
-              <el-icon><VideoPlay /></el-icon>
-              <span>{{ $t('menu.executionRecords') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/ui-automation/reports">
-              <el-icon><DataAnalysis /></el-icon>
-              <span>{{ $t('menu.testReport') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/ui-automation/scheduled-tasks">
-              <el-icon><AlarmClock /></el-icon>
-              <span>{{ $t('menu.scheduledTasks') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/ui-automation/notification-logs">
-              <el-icon><Bell /></el-icon>
-              <span>{{ $t('menu.notificationList') }}</span>
-            </el-menu-item>
-          </template>
-
-          <!-- APP自动化测试模块菜单 -->
-          <template v-else-if="currentModule === 'app-automation'">
-            <el-menu-item index="/app-automation/dashboard">
-              <el-icon><Odometer /></el-icon>
-              <span>Dashboard</span>
-            </el-menu-item>
-            <el-menu-item index="/app-automation/projects">
-              <el-icon><Folder /></el-icon>
-              <span>项目管理</span>
-            </el-menu-item>
-            <el-menu-item index="/app-automation/devices">
-              <el-icon><Cellphone /></el-icon>
-              <span>设备管理</span>
-            </el-menu-item>
-            <el-menu-item index="/app-automation/packages">
-              <el-icon><Collection /></el-icon>
-              <span>包名管理</span>
-            </el-menu-item>
-            <el-menu-item index="/app-automation/elements">
-              <el-icon><Aim /></el-icon>
-              <span>元素管理</span>
-            </el-menu-item>
-            <el-menu-item index="/app-automation/scene-builder">
-              <el-icon><Connection /></el-icon>
-              <span>用例编排</span>
-            </el-menu-item>
-            <el-menu-item index="/app-automation/test-cases">
-              <el-icon><Document /></el-icon>
-              <span>测试用例</span>
-            </el-menu-item>
-            <el-menu-item index="/app-automation/test-suites">
-              <el-icon><FolderOpened /></el-icon>
-              <span>测试套件</span>
-            </el-menu-item>
-            <el-menu-item index="/app-automation/executions">
-              <el-icon><VideoPlay /></el-icon>
-              <span>执行记录</span>
-            </el-menu-item>
-            <el-menu-item index="/app-automation/reports">
-              <el-icon><DataAnalysis /></el-icon>
-              <span>测试报告</span>
-            </el-menu-item>
-            <el-menu-item index="/app-automation/scheduled-tasks">
-              <el-icon><AlarmClock /></el-icon>
-              <span>定时任务</span>
-            </el-menu-item>
-            <el-menu-item index="/app-automation/notification-logs">
-              <el-icon><Bell /></el-icon>
-              <span>通知列表</span>
-            </el-menu-item>
-          </template>
-
           <!-- AI 智能模式模块菜单 -->
-          <template v-else-if="currentModule === 'ai-intelligent-mode'">
+          <template v-if="currentModule === 'ai-intelligent-mode'">
             <el-menu-item index="/ai-intelligent-mode/projects">
               <el-icon><Folder /></el-icon>
               <span>{{ $t('menu.projectManagement') }}</span>
@@ -330,9 +190,6 @@ const handleLanguageChange = (lang) => {
 }
 
 const currentModule = computed(() => {
-  if (route.path.startsWith('/api-testing')) return 'api-testing'
-  if (route.path.startsWith('/ui-automation')) return 'ui-automation'
-  if (route.path.startsWith('/app-automation')) return 'app-automation'
   if (route.path.startsWith('/ai-intelligent-mode')) return 'ai-intelligent-mode'
   if (route.path.startsWith('/configuration')) return 'configuration'
   return ''
@@ -340,9 +197,6 @@ const currentModule = computed(() => {
 
 const moduleName = computed(() => {
   const map = {
-    'api-testing': t('modules.apiTesting'),
-    'ui-automation': t('modules.uiAutomation'),
-    'app-automation': 'APP自动化测试',
     'ai-intelligent-mode': t('modules.aiIntelligentMode'),
     'configuration': t('modules.configuration')
   }
@@ -362,50 +216,6 @@ const breadcrumbTitle = computed(() => {
     '/ai-intelligent-mode/testsuites': t('menu.suiteManagement'),
     '/ai-intelligent-mode/executions': t('menu.executionRecords'),
     '/ai-intelligent-mode/reports': t('menu.testReport'),
-
-    // 接口测试
-    '/api-testing/dashboard': t('menu.dashboard'),
-    '/api-testing/projects': t('menu.projectManagement'),
-    '/api-testing/interfaces': t('menu.interfaceManagement'),
-    '/api-testing/automation': t('menu.automationTesting'),
-    '/api-testing/history': t('menu.requestHistory'),
-    '/api-testing/environments': t('menu.environmentManagement'),
-    '/api-testing/reports': t('menu.testReport'),
-    '/api-testing/scheduled-tasks': t('menu.scheduledTasks'),
-    '/api-testing/notification-logs': t('menu.notificationList'),
-
-    // UI自动化测试
-    '/ui-automation/dashboard': t('menu.dashboard'),
-    '/ui-automation/projects': t('menu.projectManagement'),
-    '/ui-automation/elements-enhanced': t('menu.elementManagement'),
-    '/ui-automation/test-cases': t('menu.caseManagement'),
-    '/ui-automation/scripts-enhanced': t('menu.scriptGeneration'),
-    '/ui-automation/scripts': t('menu.scriptList'),
-    '/ui-automation/suites': t('menu.suiteManagement'),
-    '/ui-automation/executions': t('menu.executionRecords'),
-    '/ui-automation/reports': t('menu.testReport'),
-    '/ui-automation/scheduled-tasks': t('menu.scheduledTasks'),
-    '/ui-automation/notification-logs': t('menu.notificationList'),
-
-    // APP自动化测试
-    '/app-automation/dashboard': 'Dashboard',
-    '/app-automation/projects': '项目管理',
-    '/app-automation/devices': '设备管理',
-    '/app-automation/packages': '包名管理',
-    '/app-automation/elements': '元素管理',
-    '/app-automation/scene-builder': '用例编排',
-    '/app-automation/test-cases': '测试用例',
-    '/app-automation/test-suites': '测试套件',
-    '/app-automation/scheduled-tasks': '定时任务',
-    '/app-automation/notification-logs': '通知列表',
-    '/app-automation/executions': '执行记录',
-    '/app-automation/reports': '测试报告',
-
-    // AI 智能模式
-    '/ai-intelligent-mode/testing': t('menu.aiIntelligentTesting'),
-    '/ai-intelligent-mode/cases': t('menu.aiCaseManagement'),
-    '/ai-intelligent-mode/execution-records': t('menu.aiExecutionRecords'),
-
 
     // 配置中心
     '/configuration/ai-model': t('menu.aiModelConfig'),

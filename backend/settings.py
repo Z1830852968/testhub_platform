@@ -49,9 +49,6 @@ LOCAL_APPS = [
     'apps.versions',
     'apps.assistant',
     'apps.requirement_analysis',
-    'apps.api_testing',
-    'apps.ui_automation.apps.UiAutomationConfig',
-    'apps.app_automation.apps.AppAutomationConfig',  # APP自动化测试
     'apps.core',
     'apps.data_factory',
     'apps.explorations',
