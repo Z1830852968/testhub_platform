@@ -23,7 +23,31 @@
             />
           </el-select>
         </el-form-item>
-        
+
+        <el-form-item label="探索入口 URL" prop="base_url">
+          <el-input v-model="form.base_url" placeholder="如: http://localhost:3000"></el-input>
+        </el-form-item>
+
+        <el-form-item label="认证类型" prop="auth_type">
+          <el-radio-group v-model="form.auth_type">
+            <el-radio label="none">免登录</el-radio>
+            <el-radio label="form">表单登录</el-radio>
+          </el-radio-group>
+        </el-form-item>
+
+        <template v-if="form.auth_type === 'form'">
+          <el-form-item label="登录账号" prop="auth_username">
+            <el-input v-model="form.auth_username" placeholder="请输入系统账号"></el-input>
+          </el-form-item>
+          <el-form-item label="登录密码" prop="auth_password">
+            <el-input type="password" v-model="form.auth_password" placeholder="请输入系统密码" show-password></el-input>
+          </el-form-item>
+        </template>
+
+        <el-form-item label="最大探索步数" prop="max_steps">
+          <el-input-number v-model="form.max_steps" :min="1" :max="50"></el-input-number>
+        </el-form-item>
+
         <el-form-item>
           <el-button type="primary" @click="startExploration" :loading="loading">
             开始探索
@@ -41,6 +65,8 @@
 
       <el-table :data="runs" style="width: 100%" v-loading="tableLoading">
         <el-table-column prop="id" label="ID" width="80" />
+        <el-table-column prop="base_url" label="目标 URL" min-width="150" show-overflow-tooltip />
+        <el-table-column prop="max_steps" label="探索步数" width="100" />
         <el-table-column prop="status" label="状态" width="120">
           <template #default="{ row }">
             <el-tag :type="getStatusType(row.status)">{{ getStatusLabel(row.status) }}</el-tag>
@@ -87,11 +113,17 @@ import dayjs from 'dayjs'
 
 const formRef = ref(null)
 const form = ref({
-  project: ''
+  project: '',
+  base_url: 'http://localhost:3000',
+  auth_type: 'form',
+  auth_username: 'admin',
+  auth_password: 'admin123',
+  max_steps: 10
 })
 
 const rules = {
-  project: [{ required: true, message: '请选择项目', trigger: 'change' }]
+  project: [{ required: true, message: '请选择项目', trigger: 'change' }],
+  base_url: [{ required: true, message: '请输入入口 URL', trigger: 'blur' }]
 }
 
 const projects = ref([])
@@ -164,7 +196,12 @@ const startExploration = async () => {
       loading.value = true
       try {
         await api.post('/explorations/runs/', {
-          project: form.value.project
+          project: form.value.project,
+          base_url: form.value.base_url,
+          auth_type: form.value.auth_type,
+          auth_username: form.value.auth_username,
+          auth_password: form.value.auth_password,
+          max_steps: form.value.max_steps
         })
         ElMessage.success('探索任务已启动')
         loadRuns()

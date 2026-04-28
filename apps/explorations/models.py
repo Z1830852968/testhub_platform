@@ -10,6 +10,11 @@ class ExplorationRun(models.Model):
         ('stopped', 'Stopped'),
     )
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='exploration_runs')
+    base_url = models.URLField(blank=True, null=True)
+    auth_type = models.CharField(max_length=20, default='none')
+    auth_username = models.CharField(max_length=100, blank=True, null=True)
+    auth_password = models.CharField(max_length=100, blank=True, null=True)
+    max_steps = models.IntegerField(default=10)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     start_time = models.DateTimeField(null=True, blank=True)
     end_time = models.DateTimeField(null=True, blank=True)

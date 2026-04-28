@@ -210,6 +210,7 @@ class AIModelConfig(models.Model):
         ('writer', '测试用例编写专家'),
         ('reviewer', '测试评审专家'),
         ('browser_use_text', 'Browser Use - 文本模式'),
+        ('explorer', 'AI网页探索专家'),
     ]
 
     name = models.CharField(max_length=100, verbose_name='配置名称')

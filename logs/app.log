@@ -491,3 +491,136 @@ INFO 2026-04-28 11:09:35,064 basehttp 141440 140080808986304 "GET /api/projects/
 INFO 2026-04-28 11:09:35,064 basehttp 141440 140080808986304 "GET /api/projects/ HTTP/1.1" 200 568
 INFO 2026-04-28 11:09:35,066 basehttp 141440 140080798496448 "GET /api/requirement-analysis/config/check/ HTTP/1.1" 200 612
 INFO 2026-04-28 11:09:35,066 basehttp 141440 140080798496448 "GET /api/requirement-analysis/config/check/ HTTP/1.1" 200 612
+INFO 2026-04-28 11:12:28,614 autoreload 95827 140230465981312 /workspace/apps/requirement_analysis/models.py changed, reloading.
+INFO 2026-04-28 11:12:28,614 autoreload 95827 140230465981312 /workspace/apps/requirement_analysis/models.py changed, reloading.
+INFO 2026-04-28 11:12:28,637 autoreload 141440 140081053178752 /workspace/apps/explorations/models.py changed, reloading.
+INFO 2026-04-28 11:12:28,637 autoreload 141440 140081053178752 /workspace/apps/explorations/models.py changed, reloading.
+INFO 2026-04-28 11:12:29,677 autoreload 197053 139626184330112 Watching for file changes with StatReloader
+INFO 2026-04-28 11:12:29,677 autoreload 197053 139626184330112 Watching for file changes with StatReloader
+INFO 2026-04-28 11:12:29,780 autoreload 197054 140428411149184 Watching for file changes with StatReloader
+INFO 2026-04-28 11:12:29,780 autoreload 197054 140428411149184 Watching for file changes with StatReloader
+INFO 2026-04-28 11:13:49,524 autoreload 197053 139626184330112 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:13:49,524 autoreload 197053 139626184330112 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:13:50,597 autoreload 200683 140002962713472 Watching for file changes with StatReloader
+INFO 2026-04-28 11:13:50,597 autoreload 200683 140002962713472 Watching for file changes with StatReloader
+INFO 2026-04-28 11:14:03,188 autoreload 200683 140002962713472 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:14:03,188 autoreload 200683 140002962713472 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:14:04,168 autoreload 201426 139707275193216 Watching for file changes with StatReloader
+INFO 2026-04-28 11:14:04,168 autoreload 201426 139707275193216 Watching for file changes with StatReloader
+ERROR 2026-04-28 11:15:35,293 signal 203597 139785215847296 Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0x7f22459db230>> raised: IndentationError('unexpected indent', ('/workspace/apps/explorations/tasks.py', 47, 4, '    let elements = document.querySelectorAll(\'a, button, input, [role="button"], [role="link"], .el-menu-item, .el-button\');\n', 47, -1))
+Traceback (most recent call last):
+  File "/workspace/venv/lib/python3.14/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/workspace/venv/lib/python3.14/site-packages/celery/fixups/django.py", line 97, in on_import_modules
+    self.worker_fixup.validate_models()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/workspace/venv/lib/python3.14/site-packages/celery/fixups/django.py", line 137, in validate_models
+    run_checks()
+    ~~~~~~~~~~^^
+  File "/workspace/venv/lib/python3.14/site-packages/django/core/checks/registry.py", line 88, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "/workspace/venv/lib/python3.14/site-packages/django/core/checks/urls.py", line 14, in check_url_config
+    return check_resolver(resolver)
+  File "/workspace/venv/lib/python3.14/site-packages/django/core/checks/urls.py", line 24, in check_resolver
+    return check_method()
+  File "/workspace/venv/lib/python3.14/site-packages/django/urls/resolvers.py", line 494, in check
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "/workspace/venv/lib/python3.14/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/workspace/venv/lib/python3.14/site-packages/django/urls/resolvers.py", line 715, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/venv/lib/python3.14/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/workspace/venv/lib/python3.14/site-packages/django/urls/resolvers.py", line 708, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "/root/.pyenv/versions/3.14.3/lib/python3.14/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1398, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "/workspace/backend/urls.py", line 31, in <module>
+    path('api/explorations/', include('apps.explorations.urls')),
+                              ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/venv/lib/python3.14/site-packages/django/urls/conf.py", line 38, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/root/.pyenv/versions/3.14.3/lib/python3.14/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1398, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "/workspace/apps/explorations/urls.py", line 3, in <module>
+    from .views import ExplorationRunViewSet, FeatureItemViewSet, ExplorationArtifactViewSet
+  File "/workspace/apps/explorations/views.py", line 6, in <module>
+    from .tasks import run_system_exploration, stop_system_exploration
+  File "/workspace/apps/explorations/tasks.py", line 47
+    let elements = document.querySelectorAll('a, button, input, [role="button"], [role="link"], .el-menu-item, .el-button');
+IndentationError: unexpected indent
+ERROR 2026-04-28 11:15:35,305 signal 203597 139785215847296 Signal handler <promise@0x7f2245014a70 --> <bound method Celery._autodiscover_tasks of <Celery backend at 0x7f22459daba0>>> raised: IndentationError('unexpected indent', ('/workspace/apps/explorations/tasks.py', 47, 4, '    let elements = document.querySelectorAll(\'a, button, input, [role="button"], [role="link"], .el-menu-item, .el-button\');\n', 47, -1))
+Traceback (most recent call last):
+  File "/workspace/venv/lib/python3.14/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/workspace/venv/lib/python3.14/site-packages/vine/promises.py", line 161, in __call__
+    return self.throw()
+           ~~~~~~~~~~^^
+  File "/workspace/venv/lib/python3.14/site-packages/vine/promises.py", line 158, in __call__
+    retval = fun(*final_args, **final_kwargs)
+  File "/workspace/venv/lib/python3.14/site-packages/celery/app/base.py", line 691, in _autodiscover_tasks
+    return self._autodiscover_tasks_from_fixups(related_name)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/workspace/venv/lib/python3.14/site-packages/celery/app/base.py", line 700, in _autodiscover_tasks_from_fixups
+    return self._autodiscover_tasks_from_names([
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+        pkg for fixup in self._fixups
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        if hasattr(fixup, 'autodiscover_tasks')
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        for pkg in fixup.autodiscover_tasks()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ], related_name=related_name)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/venv/lib/python3.14/site-packages/celery/app/base.py", line 695, in _autodiscover_tasks_from_names
+    return self.loader.autodiscover_tasks(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        packages() if callable(packages) else packages, related_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/workspace/venv/lib/python3.14/site-packages/celery/loaders/base.py", line 220, in autodiscover_tasks
+    mod.__name__ for mod in autodiscover_tasks(packages or (),
+                            ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+                                               related_name) if mod)
+                                               ^^^^^^^^^^^^^
+  File "/workspace/venv/lib/python3.14/site-packages/celery/loaders/base.py", line 246, in autodiscover_tasks
+    return [find_related_module(pkg, related_name) for pkg in packages]
+            ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/workspace/venv/lib/python3.14/site-packages/celery/loaders/base.py", line 267, in find_related_module
+    return importlib.import_module(module_name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/root/.pyenv/versions/3.14.3/lib/python3.14/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1398, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 755, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 893, in get_code
+  File "<frozen importlib._bootstrap_external>", line 823, in source_to_code
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "/workspace/apps/explorations/tasks.py", line 47
+    let elements = document.querySelectorAll('a, button, input, [role="button"], [role="link"], .el-menu-item, .el-button');
+IndentationError: unexpected indent
+INFO 2026-04-28 11:15:45,924 autoreload 205020 139623585086336 Watching for file changes with StatReloader
+INFO 2026-04-28 11:15:45,924 autoreload 205020 139623585086336 Watching for file changes with StatReloader

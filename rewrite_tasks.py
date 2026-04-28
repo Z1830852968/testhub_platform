@@ -1,4 +1,11 @@
+import re
 
+with open('apps/explorations/tasks.py', 'r') as f:
+    content = f.read()
+
+# We will just write a new tasks.py completely.
+
+new_tasks_code = """
 import os
 import time
 import json
@@ -29,21 +36,6 @@ def is_stopped(run_id):
 
 JS_EXTRACT_DOM = '''
 () => {
-    const results = [];
-    const els = document.querySelectorAll('a, button, input');
-    let counter = 1;
-    for(let el of els) {
-        if(el.offsetWidth === 0 || el.offsetHeight === 0) continue;
-        let text = el.innerText || el.value || el.getAttribute('aria-label') || el.placeholder || el.name || '';
-        text = text.trim().substring(0, 50);
-        if(!text && el.tagName !== 'INPUT') continue;
-        let aiId = 'ai-id-' + counter++;
-        el.setAttribute('data-ai-id', aiId);
-        results.push({id: aiId, tag: el.tagName.toLowerCase(), text: text, type: el.type || '', href: el.href || ''});
-    }
-    return results;
-}
-'''
     let elements = document.querySelectorAll('a, button, input, [role="button"], [role="link"], .el-menu-item, .el-button');
     let interactiveElements = [];
     let idCounter = 1;
@@ -137,14 +129,14 @@ def run_system_exploration(run_id):
                 elements = page.evaluate(JS_EXTRACT_DOM)
                 
                 # Build AI prompt
-                prompt = f"你是一个专业的AI网页测试探索引擎。当前URL: {current_url}\n"
-                prompt += f"页面上可点击/交互的元素列表: {json.dumps(elements, ensure_ascii=False)}\n"
-                prompt += "请分析当前页面，提取出一个业务功能点，并决定下一步点击哪个元素进行探索。\n"
-                prompt += "要求：返回严格的JSON格式：\n"
-                prompt += "{\n"
-                prompt += "  "feature_name": "提取的功能名称(如: 用户管理列表)",\n"
-                prompt += "  "description": "功能描述(如: 包含用户列表展示、搜索和添加按钮)",\n"
-                prompt += "  "next_action_id": "你决定下一步点击的元素ID(如: ai-id-1)"\n"
+                prompt = f"你是一个专业的AI网页测试探索引擎。当前URL: {current_url}\\n"
+                prompt += f"页面上可点击/交互的元素列表: {json.dumps(elements, ensure_ascii=False)}\\n"
+                prompt += "请分析当前页面，提取出一个业务功能点，并决定下一步点击哪个元素进行探索。\\n"
+                prompt += "要求：返回严格的JSON格式：\\n"
+                prompt += "{\\n"
+                prompt += "  \"feature_name\": \"提取的功能名称(如: 用户管理列表)\",\\n"
+                prompt += "  \"description\": \"功能描述(如: 包含用户列表展示、搜索和添加按钮)\",\\n"
+                prompt += "  \"next_action_id\": \"你决定下一步点击的元素ID(如: ai-id-1)\"\\n"
                 prompt += "}"
 
                 messages = [
@@ -225,4 +217,9 @@ def run_system_exploration(run_id):
             run.result_summary = f"探索过程中发生错误: {str(e)}"
         run.end_time = timezone.now()
         run.save()
+
+"""
+
+with open('apps/explorations/tasks.py', 'w') as f:
+    f.write(new_tasks_code)
 
