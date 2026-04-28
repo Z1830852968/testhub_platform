@@ -33,6 +33,66 @@ const routes = [
     name: 'Register',
     component: Register,
     meta: { requiresGuest: true }
+  },
+  {
+    path: '/app-automation',
+    component: Layout,
+    meta: { requiresAuth: true },
+    children: [
+      {
+        path: '',
+        redirect: 'dashboard'
+      },
+      {
+        path: 'dashboard',
+        name: 'AppAutomationDashboard',
+      },
+      {
+        path: 'projects',
+        name: 'AppProjectList',
+      },
+      {
+        path: 'devices',
+        name: 'AppDeviceList',
+      },
+      {
+        path: 'packages',
+        name: 'AppPackageList',
+      },
+      {
+        path: 'elements',
+        name: 'AppElementList',
+      },
+      {
+        path: 'scene-builder',
+        name: 'AppSceneBuilder',
+        meta: { title: '用例编排' }
+      },
+      {
+        path: 'test-cases',
+        name: 'AppTestCaseList',
+      },
+      {
+        path: 'test-suites',
+        name: 'AppTestSuiteList',
+      },
+      {
+        path: 'scheduled-tasks',
+        name: 'AppScheduledTasks',
+      },
+      {
+        path: 'notification-logs',
+        name: 'AppNotificationLogs',
+      },
+      {
+        path: 'executions',
+        name: 'AppExecutionList',
+      },
+      {
+        path: 'reports',
+        name: 'AppReportList',
+      }
+    ]
   }
 ]
 
