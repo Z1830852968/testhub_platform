@@ -417,3 +417,77 @@ INFO 2026-04-28 10:59:49,779 basehttp 141440 140080798496448 "GET /api/testcases
 INFO 2026-04-28 10:59:49,779 basehttp 141440 140080798496448 "GET /api/testcases/?page=1&page_size=15&search&project&priority HTTP/1.1" 200 52
 INFO 2026-04-28 10:59:49,786 basehttp 141440 140080808986304 "GET /api/projects/ HTTP/1.1" 200 568
 INFO 2026-04-28 10:59:49,786 basehttp 141440 140080808986304 "GET /api/projects/ HTTP/1.1" 200 568
+INFO 2026-04-28 11:06:08,196 basehttp 141440 140080808986304 "POST /api/auth/token/refresh/ HTTP/1.1" 200 489
+INFO 2026-04-28 11:06:08,196 basehttp 141440 140080808986304 "POST /api/auth/token/refresh/ HTTP/1.1" 200 489
+INFO 2026-04-28 11:06:08,287 basehttp 141440 140080808986304 "GET /api/projects/?page=1&search&status HTTP/1.1" 200 568
+INFO 2026-04-28 11:06:08,287 basehttp 141440 140080808986304 "GET /api/projects/?page=1&search&status HTTP/1.1" 200 568
+INFO 2026-04-28 11:06:22,698 basehttp 141440 140080808986304 "GET /api/projects/ HTTP/1.1" 200 568
+INFO 2026-04-28 11:06:22,698 basehttp 141440 140080808986304 "GET /api/projects/ HTTP/1.1" 200 568
+INFO 2026-04-28 11:06:22,808 basehttp 141440 140080808986304 "GET /api/explorations/runs/ HTTP/1.1" 200 5091
+INFO 2026-04-28 11:06:22,808 basehttp 141440 140080808986304 "GET /api/explorations/runs/ HTTP/1.1" 200 5091
+INFO 2026-04-28 11:06:25,061 basehttp 141440 140080808986304 "GET /api/explorations/features/ HTTP/1.1" 200 52
+INFO 2026-04-28 11:06:25,061 basehttp 141440 140080808986304 "GET /api/explorations/features/ HTTP/1.1" 200 52
+INFO 2026-04-28 11:06:27,285 basehttp 141440 140080798496448 "GET /api/projects/ HTTP/1.1" 200 568
+INFO 2026-04-28 11:06:27,285 basehttp 141440 140080798496448 "GET /api/projects/ HTTP/1.1" 200 568
+INFO 2026-04-28 11:06:27,289 basehttp 141440 140080808986304 "GET /api/requirement-analysis/config/check/ HTTP/1.1" 200 612
+INFO 2026-04-28 11:06:27,289 basehttp 141440 140080808986304 "GET /api/requirement-analysis/config/check/ HTTP/1.1" 200 612
+INFO 2026-04-28 11:06:31,991 basehttp 141440 140080798496448 "GET /api/testcases/?page=1&page_size=15&search&project&priority HTTP/1.1" 200 52
+INFO 2026-04-28 11:06:31,991 basehttp 141440 140080798496448 "GET /api/testcases/?page=1&page_size=15&search&project&priority HTTP/1.1" 200 52
+INFO 2026-04-28 11:06:31,993 basehttp 141440 140080808986304 "GET /api/projects/ HTTP/1.1" 200 568
+INFO 2026-04-28 11:06:31,993 basehttp 141440 140080808986304 "GET /api/projects/ HTTP/1.1" 200 568
+WARNING 2026-04-28 11:06:34,840 log 141440 140080808986304 Unauthorized: /api/auth/token/refresh/
+WARNING 2026-04-28 11:06:34,840 log 141440 140080808986304 Unauthorized: /api/auth/token/refresh/
+WARNING 2026-04-28 11:06:34,840 basehttp 141440 140080808986304 "POST /api/auth/token/refresh/ HTTP/1.1" 401 65
+WARNING 2026-04-28 11:06:34,840 basehttp 141440 140080808986304 "POST /api/auth/token/refresh/ HTTP/1.1" 401 65
+WARNING 2026-04-28 11:06:34,947 log 141440 140080808986304 Unauthorized: /api/auth/token/refresh/
+WARNING 2026-04-28 11:06:34,947 log 141440 140080808986304 Unauthorized: /api/auth/token/refresh/
+WARNING 2026-04-28 11:06:34,948 basehttp 141440 140080808986304 "POST /api/auth/token/refresh/ HTTP/1.1" 401 65
+WARNING 2026-04-28 11:06:34,948 basehttp 141440 140080808986304 "POST /api/auth/token/refresh/ HTTP/1.1" 401 65
+WARNING 2026-04-28 11:06:38,569 log 141440 140080808986304 Not Found: /api/ui-automation/ai-execution-records/
+WARNING 2026-04-28 11:06:38,569 log 141440 140080808986304 Not Found: /api/ui-automation/ai-execution-records/
+WARNING 2026-04-28 11:06:38,569 basehttp 141440 140080808986304 "GET /api/ui-automation/ai-execution-records/?page=1&page_size=20 HTTP/1.1" 404 4451
+WARNING 2026-04-28 11:06:38,569 basehttp 141440 140080808986304 "GET /api/ui-automation/ai-execution-records/?page=1&page_size=20 HTTP/1.1" 404 4451
+INFO 2026-04-28 11:06:39,913 basehttp 141440 140080808986304 "GET /api/projects/ HTTP/1.1" 200 568
+INFO 2026-04-28 11:06:39,913 basehttp 141440 140080808986304 "GET /api/projects/ HTTP/1.1" 200 568
+INFO 2026-04-28 11:06:40,031 basehttp 141440 140080808986304 "GET /api/reports/reports/status_distribution/?days=7 HTTP/1.1" 200 59
+INFO 2026-04-28 11:06:40,031 basehttp 141440 140080808986304 "GET /api/reports/reports/status_distribution/?days=7 HTTP/1.1" 200 59
+INFO 2026-04-28 11:06:40,036 basehttp 141440 140080798496448 "GET /api/reports/reports/dashboard/ HTTP/1.1" 200 84
+INFO 2026-04-28 11:06:40,036 basehttp 141440 140080798496448 "GET /api/reports/reports/dashboard/ HTTP/1.1" 200 84
+INFO 2026-04-28 11:06:40,137 basehttp 141440 140080798496448 "GET /api/reports/reports/execution_trend/?days=7 HTTP/1.1" 200 225
+INFO 2026-04-28 11:06:40,137 basehttp 141440 140080798496448 "GET /api/reports/reports/execution_trend/?days=7 HTTP/1.1" 200 225
+INFO 2026-04-28 11:06:40,236 basehttp 141440 140080798496448 "GET /api/reports/reports/defect_distribution/?days=7 HTTP/1.1" 200 2
+INFO 2026-04-28 11:06:40,236 basehttp 141440 140080798496448 "GET /api/reports/reports/defect_distribution/?days=7 HTTP/1.1" 200 2
+INFO 2026-04-28 11:06:40,326 basehttp 141440 140080798496448 "GET /api/reports/reports/failed_cases_top/?days=7 HTTP/1.1" 200 2
+INFO 2026-04-28 11:06:40,326 basehttp 141440 140080798496448 "GET /api/reports/reports/failed_cases_top/?days=7 HTTP/1.1" 200 2
+INFO 2026-04-28 11:06:40,416 basehttp 141440 140080798496448 "GET /api/reports/reports/ai_efficiency/?days=7 HTTP/1.1" 200 97
+INFO 2026-04-28 11:06:40,416 basehttp 141440 140080798496448 "GET /api/reports/reports/ai_efficiency/?days=7 HTTP/1.1" 200 97
+INFO 2026-04-28 11:06:40,512 basehttp 141440 140080798496448 "GET /api/reports/reports/team_workload/?days=7 HTTP/1.1" 200 2
+INFO 2026-04-28 11:06:40,512 basehttp 141440 140080798496448 "GET /api/reports/reports/team_workload/?days=7 HTTP/1.1" 200 2
+INFO 2026-04-28 11:06:41,623 basehttp 141440 140080798496448 "GET /api/projects/?page=1&search&status HTTP/1.1" 200 568
+INFO 2026-04-28 11:06:41,623 basehttp 141440 140080798496448 "GET /api/projects/?page=1&search&status HTTP/1.1" 200 568
+INFO 2026-04-28 11:07:56,225 basehttp 141440 140080798496448 "GET /api/explorations/features/ HTTP/1.1" 200 52
+INFO 2026-04-28 11:07:56,225 basehttp 141440 140080798496448 "GET /api/explorations/features/ HTTP/1.1" 200 52
+INFO 2026-04-28 11:07:57,127 basehttp 141440 140080798496448 "GET /api/projects/ HTTP/1.1" 200 568
+INFO 2026-04-28 11:07:57,127 basehttp 141440 140080798496448 "GET /api/projects/ HTTP/1.1" 200 568
+INFO 2026-04-28 11:07:57,219 basehttp 141440 140080798496448 "GET /api/explorations/runs/ HTTP/1.1" 200 5091
+INFO 2026-04-28 11:07:57,219 basehttp 141440 140080798496448 "GET /api/explorations/runs/ HTTP/1.1" 200 5091
+INFO 2026-04-28 11:08:00,122 basehttp 141440 140080798496448 "GET /api/explorations/runs/ HTTP/1.1" 200 5091
+INFO 2026-04-28 11:08:00,122 basehttp 141440 140080798496448 "GET /api/explorations/runs/ HTTP/1.1" 200 5091
+INFO 2026-04-28 11:08:03,325 basehttp 141440 140080798496448 "GET /api/projects/?page=1&search&status HTTP/1.1" 200 568
+INFO 2026-04-28 11:08:03,325 basehttp 141440 140080798496448 "GET /api/projects/?page=1&search&status HTTP/1.1" 200 568
+INFO 2026-04-28 11:09:26,648 basehttp 141440 140080798496448 "GET /api/projects/ HTTP/1.1" 200 568
+INFO 2026-04-28 11:09:26,648 basehttp 141440 140080798496448 "GET /api/projects/ HTTP/1.1" 200 568
+INFO 2026-04-28 11:09:26,685 basehttp 141440 140080798496448 "GET /api/explorations/runs/ HTTP/1.1" 200 5091
+INFO 2026-04-28 11:09:26,685 basehttp 141440 140080798496448 "GET /api/explorations/runs/ HTTP/1.1" 200 5091
+INFO 2026-04-28 11:09:29,086 basehttp 141440 140080798496448 "GET /api/explorations/runs/ HTTP/1.1" 200 5091
+INFO 2026-04-28 11:09:29,086 basehttp 141440 140080798496448 "GET /api/explorations/runs/ HTTP/1.1" 200 5091
+INFO 2026-04-28 11:09:32,059 basehttp 141440 140080798496448 "GET /api/explorations/features/ HTTP/1.1" 200 52
+INFO 2026-04-28 11:09:32,059 basehttp 141440 140080798496448 "GET /api/explorations/features/ HTTP/1.1" 200 52
+INFO 2026-04-28 11:09:33,110 basehttp 141440 140080798496448 "GET /api/projects/ HTTP/1.1" 200 568
+INFO 2026-04-28 11:09:33,110 basehttp 141440 140080798496448 "GET /api/projects/ HTTP/1.1" 200 568
+INFO 2026-04-28 11:09:33,111 basehttp 141440 140080808986304 "GET /api/explorations/runs/ HTTP/1.1" 200 5091
+INFO 2026-04-28 11:09:33,111 basehttp 141440 140080808986304 "GET /api/explorations/runs/ HTTP/1.1" 200 5091
+INFO 2026-04-28 11:09:35,064 basehttp 141440 140080808986304 "GET /api/projects/ HTTP/1.1" 200 568
+INFO 2026-04-28 11:09:35,064 basehttp 141440 140080808986304 "GET /api/projects/ HTTP/1.1" 200 568
+INFO 2026-04-28 11:09:35,066 basehttp 141440 140080798496448 "GET /api/requirement-analysis/config/check/ HTTP/1.1" 200 612
+INFO 2026-04-28 11:09:35,066 basehttp 141440 140080798496448 "GET /api/requirement-analysis/config/check/ HTTP/1.1" 200 612
