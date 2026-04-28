@@ -6,6 +6,44 @@
     </div>
 
     <div class="main-content">
+      <!-- 角色配置状态提示 -->
+      <div class="role-status-alert" v-if="missingRoles.length > 0">
+        <el-alert
+          type="warning"
+          show-icon
+          :closable="false"
+        >
+          <template #title>
+            缺少必要的角色配置：<strong>{{ missingRoles.join(', ') }}</strong>。请添加配置或启用相关角色的模型，否则对应的AI功能将无法正常使用。
+          </template>
+        </el-alert>
+      </div>
+      
+      <!-- 角色配置状态展示面板 -->
+      <div class="role-status-cards">
+        <div class="role-card" :class="{ 'configured': isRoleConfigured('writer') }">
+          <div class="role-icon">✍️</div>
+          <div class="role-info">
+            <h4>Writer (测试用例编写专家)</h4>
+            <span class="status-text">{{ isRoleConfigured('writer') ? '已配置' : '未配置' }}</span>
+          </div>
+        </div>
+        <div class="role-card" :class="{ 'configured': isRoleConfigured('reviewer') }">
+          <div class="role-icon">🔍</div>
+          <div class="role-info">
+            <h4>Reviewer (测试评审专家)</h4>
+            <span class="status-text">{{ isRoleConfigured('reviewer') ? '已配置' : '未配置' }}</span>
+          </div>
+        </div>
+        <div class="role-card" :class="{ 'configured': isRoleConfigured('explorer') }">
+          <div class="role-icon">🧭</div>
+          <div class="role-info">
+            <h4>Explorer (AI网页探索专家)</h4>
+            <span class="status-text">{{ isRoleConfigured('explorer') ? '已配置' : '未配置' }}</span>
+          </div>
+        </div>
+      </div>
+
       <!-- 配置列表 -->
       <div class="configs-section">
         <div class="section-header">
@@ -21,6 +59,7 @@
               <div class="config-title">
                 <h3>{{ config.name || $t('configuration.common.unnamed') }}</h3>
                 <div class="config-badges">
+                  <span v-if="config.role" class="role-badge">{{ config.role }}</span>
                   <span class="provider-badge" :class="config.model_type">
                     {{ getProviderLabel(config.model_type) }}
                   </span>
@@ -87,6 +126,19 @@
                 class="form-input"
                 :placeholder="$t('configuration.aiMode.configNamePlaceholder')"
                 required>
+            </div>
+
+            <div class="form-group">
+              <label>{{ $t('configuration.aiMode.role') || 'Role' }} <span class="required">*</span></label>
+              <select
+                v-model="configForm.role"
+                class="form-select"
+                required>
+                <option value="">{{ $t('configuration.aiMode.selectRole') || 'Select Role' }}</option>
+                <option value="writer">writer (测试用例编写专家)</option>
+                <option value="reviewer">reviewer (测试评审专家)</option>
+                <option value="explorer">explorer (AI网页探索专家)</option>
+              </select>
             </div>
 
             <div class="form-group">
@@ -214,8 +266,18 @@ const testResult = ref({
   message: ''
 })
 
+const isRoleConfigured = (role) => {
+  return configs.value.some(c => c.role === role && c.is_active)
+}
+
+const missingRoles = computed(() => {
+  const roles = ['writer', 'reviewer', 'explorer']
+  return roles.filter(role => !isRoleConfigured(role))
+})
+
 const configForm = ref({
   name: '',
+  role: '',
   model_type: '',
   model_name: '',
   api_key: '',
@@ -246,9 +308,16 @@ const getProviderLabel = (modelType) => {
 
 const loadConfigs = async () => {
   try {
-    const response = await api.get('/ui-automation/ai-models/')
+    const response = await api.get('/requirement-analysis/ai-models/')
     if (response.data && Array.isArray(response.data)) {
       configs.value = response.data.map(config => ({
+        ...config,
+        toggling: false,
+        testing: false
+      }))
+    } else if (response.data && response.data.results) {
+      // Handle pagination if applied
+      configs.value = response.data.results.map(config => ({
         ...config,
         toggling: false,
         testing: false
@@ -269,6 +338,7 @@ const openAddModal = () => {
 const resetForm = () => {
   configForm.value = {
     name: '',
+    role: '',
     model_type: '',
     model_name: '',
     api_key: '',
@@ -287,6 +357,7 @@ const editConfig = (config) => {
 
   configForm.value = {
     name: config.name,
+    role: config.role || '',
     model_type: config.model_type,
     model_name: config.model_name,
     api_key: maskedKey, // 显示与原API Key相同长度的掩码
@@ -306,6 +377,7 @@ const onModelTypeChange = () => {
 const saveConfig = async () => {
   const requiredFields = [
     { name: 'name', value: configForm.value.name },
+    { name: 'role', value: configForm.value.role },
     { name: 'model_type', value: configForm.value.model_type },
     { name: 'model_name', value: configForm.value.model_name },
     { name: 'api_key', value: configForm.value.api_key }
@@ -329,7 +401,7 @@ const saveConfig = async () => {
         delete saveData.api_key
       }
 
-      const response = await api.put(`/ui-automation/ai-models/${editingConfigId.value}/`, saveData)
+      const response = await api.put(`/requirement-analysis/ai-models/${editingConfigId.value}/`, saveData)
 
       // 检查是否禁用了其他配置
       if (response.data.disabled_configs && response.data.disabled_configs.length > 0) {
@@ -341,7 +413,7 @@ const saveConfig = async () => {
       }
     } else {
       // 新增配置
-      const response = await api.post('/ui-automation/ai-models/', saveData)
+      const response = await api.post('/requirement-analysis/ai-models/', saveData)
 
       // 检查是否禁用了其他配置
       if (response.data.disabled_configs && response.data.disabled_configs.length > 0) {
@@ -379,7 +451,7 @@ const deleteConfig = async (configId) => {
   }
 
   try {
-    await api.delete(`/ui-automation/ai-models/${configId}/`)
+    await api.delete(`/requirement-analysis/ai-models/${configId}/`)
     ElMessage.success(t('configuration.aiMode.messages.deleteSuccess'))
     await loadConfigs()
   } catch (error) {
@@ -415,7 +487,7 @@ const toggleActive = async (config) => {
   config.toggling = true
 
   try {
-    await api.patch(`/ui-automation/ai-models/${config.id}/`, {
+    await api.patch(`/requirement-analysis/ai-models/${config.id}/`, {
       is_active: config.is_active
     })
 
@@ -437,7 +509,7 @@ const testConnection = async (config) => {
   try {
     // 测试连接需要更长的超时时间（90秒），因为大模型响应较慢
     await api.post(
-      `/ui-automation/ai-models/${config.id}/test_connection/`,
+      `/requirement-analysis/ai-models/${config.id}/test_connection/`,
       {},
       { timeout: 90000 }  // 90秒超时
     )
@@ -476,7 +548,7 @@ const testConnectionInModal = async () => {
     try {
       // 测试连接需要90秒超时
       await api.post(
-        `/ui-automation/ai-models/${editingConfigId.value}/test_connection/`,
+        `/requirement-analysis/ai-models/${editingConfigId.value}/test_connection/`,
         {},
         { timeout: 90000 }
       )
@@ -505,7 +577,7 @@ const testConnectionInModal = async () => {
   try {
     // 测试连接需要90秒超时
     await api.post(
-      '/ui-automation/ai-models/test_connection/',
+      '/requirement-analysis/ai-models/test_connection/',
       {
         provider: configForm.value.model_type,
         model_name: configForm.value.model_name,
@@ -567,6 +639,58 @@ onMounted(() => {
   padding: 20px;
   max-width: 1400px;
   margin: 0 auto;
+}
+
+.role-status-alert {
+  margin-bottom: 20px;
+}
+
+.role-status-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.role-card {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  border: 1px solid #e1e8ed;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  opacity: 0.7;
+  filter: grayscale(0.5);
+}
+
+.role-card.configured {
+  opacity: 1;
+  filter: grayscale(0);
+  border-color: #27ae60;
+  box-shadow: 0 4px 8px rgba(39, 174, 96, 0.1);
+}
+
+.role-icon {
+  font-size: 2rem;
+  margin-right: 15px;
+}
+
+.role-info h4 {
+  margin: 0 0 5px 0;
+  color: #2c3e50;
+  font-size: 1rem;
+}
+
+.role-info .status-text {
+  font-size: 0.85rem;
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.role-card.configured .status-text {
+  color: #27ae60;
 }
 
 .page-header {
@@ -653,6 +777,15 @@ onMounted(() => {
 }
 
 .provider-badge, .model-name-badge, .status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.role-badge {
+  background: #e8eaf6;
+  color: #3f51b5;
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 0.8rem;

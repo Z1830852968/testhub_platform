@@ -34,7 +34,7 @@
             <el-form-item>
               <el-button
                 type="primary"
-                @click="handleRun"
+                @click="checkAndRun"
                 :loading="running"
                 :disabled="!taskForm.description"
               >
@@ -146,10 +146,11 @@
 
 <script setup>
 import { ref, reactive, nextTick, computed } from 'vue'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { VideoPlay, DocumentAdd, CircleCheckFilled, CircleCheck, Loading, SwitchButton, DataAnalysis } from '@element-plus/icons-vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import request from '@/utils/api'
 
 const router = useRouter()
 import {
@@ -184,6 +185,33 @@ const saveFormRef = ref(null)
 const saveRules = computed(() => ({
   name: [{ required: true, message: t('uiAutomation.ai.rules.nameRequired'), trigger: 'blur' }]
 }))
+
+const checkAndRun = async () => {
+  try {
+    const response = await request.get('/requirement-analysis/config/check/')
+    const configData = response.data
+    // 假设 AI 测试依赖 explorer 角色模型
+    if (!configData.explorer_model || !configData.explorer_model.configured || !configData.explorer_model.enabled) {
+      ElMessageBox.confirm(
+        '系统未配置 Explorer (AI网页探索专家) 角色模型，或模型未启用。请前往配置中心进行配置。',
+        '缺少模型配置',
+        {
+          confirmButtonText: '去配置',
+          cancelButtonText: '取消',
+          type: 'warning',
+        }
+      ).then(() => {
+        router.push('/configuration/ai-model')
+      }).catch(() => {})
+      return
+    }
+    
+    await handleRun()
+  } catch (error) {
+    console.error('Check config error:', error)
+    ElMessage.error('检查模型配置失败，请稍后重试')
+  }
+}
 
 // 执行任务
 const handleRun = async () => {

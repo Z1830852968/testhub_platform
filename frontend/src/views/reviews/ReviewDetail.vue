@@ -341,12 +341,12 @@ const fetchReview = async () => {
     review.value = response.data
   } catch (error) {
     ElMessage.error(t('reviewDetail.fetchDetailFailed'))
-    router.push('/ai-generation/reviews')
+    router.push('/ai-intelligent-mode/reviews')
   }
 }
 
 const editReview = () => {
-  router.push(`/ai-generation/reviews/${route.params.id}/edit`)
+  router.push(`/ai-intelligent-mode/reviews/${route.params.id}/edit`)
 }
 
 const showReviewDialog = () => {
@@ -417,7 +417,7 @@ const addCommentSubmit = async () => {
 }
 
 const viewTestcase = (id) => {
-  router.push(`/ai-generation/testcases/${id}`)
+  router.push(`/ai-intelligent-mode/testcases/${id}`)
 }
 
 const getStatusType = (status) => {

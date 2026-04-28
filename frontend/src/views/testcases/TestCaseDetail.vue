@@ -70,7 +70,7 @@ const fetchTestCase = async () => {
 }
 
 const editTestCase = () => {
-  router.push(`/ai-generation/testcases/${route.params.id}/edit`)
+  router.push(`/ai-intelligent-mode/testcases/${route.params.id}/edit`)
 }
 
 const getPriorityText = (priority) => {

@@ -3010,8 +3010,8 @@ class ConfigStatusViewSet(viewsets.ViewSet):
         try:
             # 检查AI模型配置
             ai_model_configs = AIModelConfig.objects.filter(
-                role__in=['writer', 'reviewer']
-            ).exclude(role__in=['browser_use_text', 'browser_use_vision'])
+                role__in=['writer', 'reviewer', 'explorer']
+            )
 
             # 检查writer模型配置
             writer_model_enabled = ai_model_configs.filter(
@@ -3032,6 +3032,17 @@ class ConfigStatusViewSet(viewsets.ViewSet):
 
             reviewer_model_disabled = ai_model_configs.filter(
                 role='reviewer',
+                is_active=False
+            ).first()
+
+            # 检查explorer模型配置
+            explorer_model_enabled = ai_model_configs.filter(
+                role='explorer',
+                is_active=True
+            ).first()
+
+            explorer_model_disabled = ai_model_configs.filter(
+                role='explorer',
                 is_active=False
             ).first()
 
@@ -3129,6 +3140,15 @@ class ConfigStatusViewSet(viewsets.ViewSet):
                     'id': (reviewer_model_enabled or reviewer_model_disabled).id if (
                             reviewer_model_enabled or reviewer_model_disabled) else None,
                     'required': False
+                },
+                'explorer_model': {
+                    'configured': explorer_model_enabled is not None or explorer_model_disabled is not None,
+                    'enabled': explorer_model_enabled is not None,
+                    'name': (explorer_model_enabled or explorer_model_disabled).name if (
+                            explorer_model_enabled or explorer_model_disabled) else None,
+                    'id': (explorer_model_enabled or explorer_model_disabled).id if (
+                            explorer_model_enabled or explorer_model_disabled) else None,
+                    'required': True
                 },
                 'reviewer_prompt': {
                     'configured': reviewer_prompt_enabled is not None or reviewer_prompt_disabled is not None,

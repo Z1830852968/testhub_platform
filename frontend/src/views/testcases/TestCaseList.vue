@@ -65,6 +65,11 @@
           style="width: 100%"
           height="100%"
           @selection-change="handleSelectionChange">
+          <template #empty>
+            <el-empty :description="fetchError ? '加载失败' : '暂无数据'">
+              <el-button v-if="fetchError" type="primary" size="small" @click="fetchTestCases">重试</el-button>
+            </el-empty>
+          </template>
           <el-table-column type="selection" width="55" />
           <el-table-column type="index" :label="$t('testcase.serialNumber')" width="80" :index="getSerialNumber" />
           <el-table-column prop="title" :label="$t('testcase.caseTitle')" min-width="250">
@@ -153,6 +158,7 @@ import * as XLSX from 'xlsx'
 const { t } = useI18n()
 const router = useRouter()
 const loading = ref(false)
+const fetchError = ref(false)
 const testcases = ref([])
 const projects = ref([])
 const currentPage = ref(1)
@@ -166,6 +172,7 @@ const isDeleting = ref(false)
 
 const fetchTestCases = async () => {
   loading.value = true
+  fetchError.value = false
   try {
     const params = {
       page: currentPage.value,
@@ -178,6 +185,7 @@ const fetchTestCases = async () => {
     testcases.value = response.data.results || []
     total.value = response.data.count || 0
   } catch (error) {
+    fetchError.value = true
     ElMessage.error(t('testcase.fetchListFailed'))
   } finally {
     loading.value = false
@@ -204,11 +212,11 @@ const handleSizeChange = () => {
 }
 
 const goToTestCase = (id) => {
-  router.push(`/ai-generation/testcases/${id}`)
+  router.push(`/ai-intelligent-mode/testcases/${id}`)
 }
 
 const editTestCase = (testcase) => {
-  router.push(`/ai-generation/testcases/${testcase.id}/edit`)
+  router.push(`/ai-intelligent-mode/testcases/${testcase.id}/edit`)
 }
 
 const deleteTestCase = async (testcase) => {

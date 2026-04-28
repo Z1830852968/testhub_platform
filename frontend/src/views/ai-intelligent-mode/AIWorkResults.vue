@@ -35,7 +35,10 @@
         </el-col>
       </el-row>
       
-      <el-empty v-if="features.length === 0" description="暂无探索成果" />
+      <el-empty v-if="fetchError" description="获取数据失败">
+        <el-button type="primary" size="small" @click="loadFeatures">重试</el-button>
+      </el-empty>
+      <el-empty v-else-if="features.length === 0 && !loading" description="暂无探索成果" />
     </el-card>
 
     <el-dialog v-model="dialogVisible" width="80%">
@@ -58,6 +61,7 @@ const route = useRoute()
 const runId = ref(route.query.runId || '')
 const features = ref([])
 const loading = ref(false)
+const fetchError = ref(false)
 const dialogVisible = ref(false)
 const dialogImageUrl = ref('')
 
@@ -74,11 +78,13 @@ const generateTestCase = (item) => {
 
 const loadFeatures = async () => {
   loading.value = true
+  fetchError.value = false
   try {
     const url = runId.value ? `/explorations/features/?run=${runId.value}` : '/explorations/features/'
     const res = await api.get(url)
     features.value = res.data.results || res.data
   } catch (err) {
+    fetchError.value = true
     ElMessage.error('获取功能清单失败')
   } finally {
     loading.value = false

@@ -43,6 +43,11 @@
       style="width: 100%"
       v-loading="loading"
       @selection-change="handleSelectionChange">
+      <template #empty>
+        <el-empty :description="fetchError ? '加载失败' : '暂无数据'">
+          <el-button v-if="fetchError" type="primary" size="small" @click="fetchTestPlans">重试</el-button>
+        </el-empty>
+      </template>
       <el-table-column type="selection" width="55" />
       <el-table-column
         type="index"
@@ -226,6 +231,7 @@ const { t } = useI18n()
 
 const router = useRouter()
 const loading = ref(false)
+const fetchError = ref(false)
 const creating = ref(false)
 const updating = ref(false)
 const testPlans = ref([])
@@ -301,6 +307,7 @@ const planRules = {
 
 const fetchTestPlans = async () => {
   loading.value = true
+  fetchError.value = false
   try {
     const params = {
       page: currentPage.value,
@@ -318,6 +325,7 @@ const fetchTestPlans = async () => {
     testPlans.value = response.data.results || response.data || []
     total.value = response.data.count || testPlans.value.length
   } catch (error) {
+    fetchError.value = true
     ElMessage.error(t('execution.fetchListFailed'))
   } finally {
     loading.value = false
@@ -416,7 +424,7 @@ const createPlan = async () => {
 }
 
 const viewPlan = (id) => {
-  router.push(`/ai-generation/executions/${id}`)
+  router.push(`/ai-intelligent-mode/executions/${id}`)
 }
 
 const editPlan = async (plan) => {

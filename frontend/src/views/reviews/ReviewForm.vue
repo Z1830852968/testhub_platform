@@ -385,7 +385,7 @@ const saveReview = async () => {
       ElMessage.success(t('reviewForm.createSuccess'))
     }
 
-    router.push('/ai-generation/reviews')
+    router.push('/ai-intelligent-mode/reviews')
 
   } catch (error) {
     if (error.response?.data) {
@@ -479,7 +479,7 @@ const fetchReviewData = async (reviewId) => {
   } catch (error) {
     console.error('Fetch review data failed:', error)
     ElMessage.error(t('reviewForm.fetchReviewFailed'))
-    router.push('/ai-generation/reviews')
+    router.push('/ai-intelligent-mode/reviews')
   }
 }
 

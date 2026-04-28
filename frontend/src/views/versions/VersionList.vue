@@ -57,6 +57,11 @@
         v-loading="loading"
         style="width: 100%"
         @selection-change="handleSelectionChange">
+        <template #empty>
+          <el-empty :description="fetchError ? '加载失败' : '暂无数据'">
+            <el-button v-if="fetchError" type="primary" size="small" @click="fetchVersions">重试</el-button>
+          </el-empty>
+        </template>
         <el-table-column type="selection" width="55" />
         <el-table-column type="index" :label="$t('version.serialNumber')" width="80" :index="getSerialNumber" />
         <el-table-column prop="name" :label="$t('version.versionName')" min-width="100">
@@ -179,6 +184,7 @@ import dayjs from 'dayjs'
 
 const { t } = useI18n()
 const loading = ref(false)
+const fetchError = ref(false)
 const versions = ref([])
 const projects = ref([])
 const currentPage = ref(1)
@@ -210,6 +216,7 @@ const versionRules = {
 
 const fetchVersions = async () => {
   loading.value = true
+  fetchError.value = false
   try {
     const params = {
       page: currentPage.value,
@@ -221,6 +228,7 @@ const fetchVersions = async () => {
     versions.value = response.data.results || []
     total.value = response.data.count || 0
   } catch (error) {
+    fetchError.value = true
     ElMessage.error(t('version.fetchListFailed'))
   } finally {
     loading.value = false

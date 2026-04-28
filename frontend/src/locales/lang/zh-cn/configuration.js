@@ -86,6 +86,8 @@ export default {
     emptyDescription: '请添加您的AI模型配置以开始使用智能模式',
     configName: '配置名称',
     configNamePlaceholder: '例如：OpenAI智能模式',
+    role: '角色',
+    selectRole: '请选择角色',
     modelProvider: '模型提供商',
     selectProvider: '请选择提供商',
     modelName: '模型名称',

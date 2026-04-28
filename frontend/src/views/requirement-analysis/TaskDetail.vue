@@ -51,7 +51,7 @@
 
     <div v-else-if="!task.task_id" class="error-state">
       <h3>{{ $t('taskDetail.taskNotExist') }}</h3>
-      <router-link to="/ai-generation/generated-testcases">{{ $t('taskDetail.backToList') }}</router-link>
+      <router-link to="/ai-intelligent-mode/generated-testcases">{{ $t('taskDetail.backToList') }}</router-link>
     </div>
 
     <div v-else class="task-content">
@@ -616,7 +616,7 @@ export default {
         if (response.data.task_deleted) {
           ElMessage.success(this.$t('taskDetail.allDiscardedSuccess'))
           // 返回到AI生成用例记录列表
-          this.$router.push('/generated-testcases')
+          this.$router.push('/ai-intelligent-mode/generated-testcases')
         } else {
           ElMessage.success(this.$t('taskDetail.discardSuccess', { count: response.data.discarded_count }))
 
@@ -843,7 +843,7 @@ export default {
         if (response.data.task_deleted) {
           ElMessage.success(this.$t('taskDetail.allDiscardedSuccess'))
           // 返回到AI生成用例记录列表
-          this.$router.push('/generated-testcases')
+          this.$router.push('/ai-intelligent-mode/generated-testcases')
         } else {
           ElMessage.success(this.$t('taskDetail.caseDiscardedSuccess'))
 

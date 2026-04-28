@@ -63,10 +63,16 @@
         <p>{{ $t('generatedTestCases.loadingTasks') }}</p>
       </div>
 
+      <div v-else-if="fetchError" class="empty-state">
+        <div class="empty-icon">❌</div>
+        <h3>加载失败</h3>
+        <button class="refresh-btn" @click="loadTasks">重试</button>
+      </div>
+
       <div v-else-if="tasks.length === 0" class="empty-state">
         <div class="empty-icon">📝</div>
         <h3>{{ $t('generatedTestCases.noTasks') }}</h3>
-        <p>{{ $t('generatedTestCases.emptyHint') }}<router-link to="/ai-generation/requirement-analysis">{{ $t('generatedTestCases.aiGeneration') }}</router-link>{{ $t('generatedTestCases.createTask') }}</p>
+        <p>{{ $t('generatedTestCases.emptyHint') }}<router-link to="/ai-intelligent-mode/requirement-analysis">{{ $t('generatedTestCases.aiGeneration') }}</router-link>{{ $t('generatedTestCases.createTask') }}</p>
       </div>
 
       <div v-else class="testcases-table">
@@ -388,6 +394,7 @@ export default {
   data() {
     return {
       isLoading: false,
+      fetchError: false,
       tasks: [], // 改为任务列表
       selectedStatus: '',
       selectedTaskDetail: null,
@@ -470,6 +477,7 @@ export default {
   methods: {
     async loadTasks() {
       this.isLoading = true
+      this.fetchError = false
       try {
         let url = '/requirement-analysis/testcase-generation/'
         const params = new URLSearchParams()
@@ -500,6 +508,7 @@ export default {
         this.updateStats()
         
       } catch (error) {
+        this.fetchError = true
         console.error(this.$t('generatedTestCases.loadTasksFailed'), error)
         this.tasks = []
         this.pagination.total = 0

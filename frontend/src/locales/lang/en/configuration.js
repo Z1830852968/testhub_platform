@@ -86,6 +86,8 @@ export default {
     emptyDescription: 'Please add your AI model configuration to start using intelligent mode',
     configName: 'Config Name',
     configNamePlaceholder: 'e.g., OpenAI Intelligent Mode',
+    role: 'Role',
+    selectRole: 'Select Role',
     modelProvider: 'Model Provider',
     selectProvider: 'Select Provider',
     modelName: 'Model Name',

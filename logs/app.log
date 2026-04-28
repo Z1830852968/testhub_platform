@@ -624,3 +624,55 @@ Traceback (most recent call last):
 IndentationError: unexpected indent
 INFO 2026-04-28 11:15:45,924 autoreload 205020 139623585086336 Watching for file changes with StatReloader
 INFO 2026-04-28 11:15:45,924 autoreload 205020 139623585086336 Watching for file changes with StatReloader
+INFO 2026-04-28 11:33:33,379 autoreload 201426 139707275193216 /workspace/apps/explorations/serializers.py changed, reloading.
+INFO 2026-04-28 11:33:33,379 autoreload 201426 139707275193216 /workspace/apps/explorations/serializers.py changed, reloading.
+INFO 2026-04-28 11:33:33,417 autoreload 205020 139623585086336 /workspace/apps/explorations/serializers.py changed, reloading.
+INFO 2026-04-28 11:33:33,417 autoreload 205020 139623585086336 /workspace/apps/explorations/serializers.py changed, reloading.
+INFO 2026-04-28 11:33:34,461 autoreload 206496 139829936712576 Watching for file changes with StatReloader
+INFO 2026-04-28 11:33:34,461 autoreload 206496 139829936712576 Watching for file changes with StatReloader
+INFO 2026-04-28 11:33:34,471 autoreload 206495 140049080462208 Watching for file changes with StatReloader
+INFO 2026-04-28 11:33:34,471 autoreload 206495 140049080462208 Watching for file changes with StatReloader
+INFO 2026-04-28 11:33:49,223 autoreload 206495 140049080462208 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:33:49,223 autoreload 206495 140049080462208 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:33:49,235 autoreload 206496 139829936712576 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:33:49,235 autoreload 206496 139829936712576 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:33:50,226 autoreload 207937 140446881524608 Watching for file changes with StatReloader
+INFO 2026-04-28 11:33:50,226 autoreload 207937 140446881524608 Watching for file changes with StatReloader
+INFO 2026-04-28 11:33:50,231 autoreload 207938 139859950799744 Watching for file changes with StatReloader
+INFO 2026-04-28 11:33:50,231 autoreload 207938 139859950799744 Watching for file changes with StatReloader
+INFO 2026-04-28 11:34:14,805 autoreload 207937 140446881524608 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:34:14,805 autoreload 207937 140446881524608 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:34:14,821 autoreload 207938 139859950799744 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:34:14,821 autoreload 207938 139859950799744 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:34:16,194 autoreload 208795 139753117879168 Watching for file changes with StatReloader
+INFO 2026-04-28 11:34:16,194 autoreload 208795 139753117879168 Watching for file changes with StatReloader
+INFO 2026-04-28 11:34:16,196 autoreload 208780 140318732499840 Watching for file changes with StatReloader
+INFO 2026-04-28 11:34:16,196 autoreload 208780 140318732499840 Watching for file changes with StatReloader
+INFO 2026-04-28 11:34:38,795 autoreload 208795 139753117879168 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:34:38,795 autoreload 208795 139753117879168 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:34:38,813 autoreload 208780 140318732499840 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:34:38,813 autoreload 208780 140318732499840 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:34:39,835 autoreload 210827 140050000477056 Watching for file changes with StatReloader
+INFO 2026-04-28 11:34:39,835 autoreload 210827 140050000477056 Watching for file changes with StatReloader
+INFO 2026-04-28 11:34:39,836 autoreload 210828 140163055987584 Watching for file changes with StatReloader
+INFO 2026-04-28 11:34:39,836 autoreload 210828 140163055987584 Watching for file changes with StatReloader
+INFO 2026-04-28 11:34:53,471 autoreload 210828 140163055987584 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:34:53,471 autoreload 210828 140163055987584 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:34:53,477 autoreload 210827 140050000477056 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:34:53,477 autoreload 210827 140050000477056 /workspace/apps/explorations/tasks.py changed, reloading.
+INFO 2026-04-28 11:34:54,478 autoreload 212283 139757510814592 Watching for file changes with StatReloader
+INFO 2026-04-28 11:34:54,478 autoreload 212283 139757510814592 Watching for file changes with StatReloader
+INFO 2026-04-28 11:34:54,479 autoreload 212282 140372272683904 Watching for file changes with StatReloader
+INFO 2026-04-28 11:34:54,479 autoreload 212282 140372272683904 Watching for file changes with StatReloader
+INFO 2026-04-28 11:40:48,040 autoreload 212283 139757510814592 /workspace/apps/requirement_analysis/views.py changed, reloading.
+INFO 2026-04-28 11:40:48,040 autoreload 212283 139757510814592 /workspace/apps/requirement_analysis/views.py changed, reloading.
+INFO 2026-04-28 11:40:49,071 autoreload 220225 140043447597952 Watching for file changes with StatReloader
+INFO 2026-04-28 11:40:49,071 autoreload 220225 140043447597952 Watching for file changes with StatReloader
+INFO 2026-04-28 11:40:55,472 autoreload 220225 140043447597952 /workspace/apps/requirement_analysis/views.py changed, reloading.
+INFO 2026-04-28 11:40:55,472 autoreload 220225 140043447597952 /workspace/apps/requirement_analysis/views.py changed, reloading.
+INFO 2026-04-28 11:40:56,532 autoreload 220228 140085542783872 Watching for file changes with StatReloader
+INFO 2026-04-28 11:40:56,532 autoreload 220228 140085542783872 Watching for file changes with StatReloader
+INFO 2026-04-28 11:41:04,235 autoreload 220228 140085542783872 /workspace/apps/requirement_analysis/views.py changed, reloading.
+INFO 2026-04-28 11:41:04,235 autoreload 220228 140085542783872 /workspace/apps/requirement_analysis/views.py changed, reloading.
+INFO 2026-04-28 11:41:05,274 autoreload 220231 139752770399104 Watching for file changes with StatReloader
+INFO 2026-04-28 11:41:05,274 autoreload 220231 139752770399104 Watching for file changes with StatReloader

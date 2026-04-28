@@ -46,6 +46,11 @@
 
     <div class="table-container">
       <el-table :data="reviews" v-loading="loading" stripe>
+        <template #empty>
+          <el-empty :description="fetchError ? '加载失败' : '暂无数据'">
+            <el-button v-if="fetchError" type="primary" size="small" @click="fetchReviews">重试</el-button>
+          </el-empty>
+        </template>
         <el-table-column prop="title" :label="$t('reviewList.reviewTitle')" min-width="200" show-overflow-tooltip />
         <el-table-column :label="$t('reviewList.reviewProject')" width="200">
           <template #default="{ row }">
@@ -165,6 +170,7 @@ const reviews = ref([])
 const projects = ref([])
 const users = ref([])
 const loading = ref(false)
+const fetchError = ref(false)
 const reviewDialogVisible = ref(false)
 const currentReview = ref(null)
 
@@ -187,6 +193,7 @@ const reviewForm = reactive({
 
 const fetchReviews = async () => {
   loading.value = true
+  fetchError.value = false
   try {
     const params = {
       page: pagination.page,
@@ -199,6 +206,7 @@ const fetchReviews = async () => {
     reviews.value = response.data.results
     pagination.total = response.data.count
   } catch (error) {
+    fetchError.value = true
     ElMessage.error(t('reviewList.fetchListFailed'))
   } finally {
     loading.value = false
@@ -224,15 +232,15 @@ const fetchUsers = async () => {
 }
 
 const createReview = () => {
-  router.push('/ai-generation/reviews/create')
+  router.push('/ai-intelligent-mode/reviews/create')
 }
 
 const viewReview = (id) => {
-  router.push(`/ai-generation/reviews/${id}`)
+  router.push(`/ai-intelligent-mode/reviews/${id}`)
 }
 
 const editReview = (id) => {
-  router.push(`/ai-generation/reviews/${id}/edit`)
+  router.push(`/ai-intelligent-mode/reviews/${id}/edit`)
 }
 
 const submitReview = (review) => {

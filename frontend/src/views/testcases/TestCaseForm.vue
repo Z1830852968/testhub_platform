@@ -206,7 +206,7 @@ const handleSubmit = async () => {
       try {
         await api.post('/testcases/', form)
         ElMessage.success(t('testcase.createSuccess'))
-        router.push('/ai-generation/testcases')
+        router.push('/ai-intelligent-mode/testcases')
       } catch (error) {
         ElMessage.error(t('testcase.createFailed'))
         console.error('Submit error:', error)

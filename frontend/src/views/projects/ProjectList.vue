@@ -35,6 +35,11 @@
       </div>
       
       <el-table :data="projects" v-loading="loading" style="width: 100%">
+        <template #empty>
+          <el-empty :description="fetchError ? '加载失败' : '暂无数据'">
+            <el-button v-if="fetchError" type="primary" size="small" @click="fetchProjects">重试</el-button>
+          </el-empty>
+        </template>
         <el-table-column prop="name" :label="$t('project.projectName')" min-width="200">
           <template #default="{ row }">
             <el-link @click="goToProject(row.id)" type="primary">
@@ -127,6 +132,7 @@ import dayjs from 'dayjs'
 const router = useRouter()
 const { t } = useI18n()
 const loading = ref(false)
+const fetchError = ref(false)
 const submitting = ref(false)
 const showCreateDialog = ref(false)
 const isEdit = ref(false)
@@ -158,6 +164,7 @@ const rules = {
 
 const fetchProjects = async () => {
   loading.value = true
+  fetchError.value = false
   try {
     const params = {
       page: currentPage.value,
@@ -168,6 +175,7 @@ const fetchProjects = async () => {
     projects.value = response.data.results
     total.value = response.data.count
   } catch (error) {
+    fetchError.value = true
     ElMessage.error(t('project.fetchListFailed'))
   } finally {
     loading.value = false
@@ -189,7 +197,7 @@ const handlePageChange = () => {
 }
 
 const goToProject = (id) => {
-  router.push(`/ai-generation/projects/${id}`)
+  router.push(`/ai-intelligent-mode/projects/${id}`)
 }
 
 const handleCreateProject = () => {
