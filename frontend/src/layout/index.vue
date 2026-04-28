@@ -4,7 +4,7 @@
       <!-- 顶部导航栏 -->
       <el-header height="64px" class="app-header">
         <div class="header-left">
-          <div class="logo" @click="router.push('/home')">
+          <div class="logo" @click="router.push('/ai-intelligent-mode/projects')">
             <img :src="logoImage" alt="TestHub" class="logo-img" />
           </div>
           
@@ -164,7 +164,7 @@
         <el-main class="app-main">
           <div class="breadcrumb-wrapper">
             <el-breadcrumb separator="/">
-              <el-breadcrumb-item :to="{ path: '/home' }">{{ $t('nav.home') }}</el-breadcrumb-item>
+              <el-breadcrumb-item :to="{ path: '/ai-intelligent-mode/projects' }">{{ $t('nav.home') }}</el-breadcrumb-item>
               <el-breadcrumb-item v-if="moduleName">{{ moduleName }}</el-breadcrumb-item>
               <el-breadcrumb-item>{{ breadcrumbTitle }}</el-breadcrumb-item>
             </el-breadcrumb>

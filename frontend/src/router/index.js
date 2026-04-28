@@ -14,13 +14,11 @@ import NotificationLogs from '@/views/notification/NotificationLogs.vue'
 const routes = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/ai-intelligent-mode/projects'
   },
   {
     path: '/home',
-    name: 'Home',
-    component: Home,
-    meta: { requiresAuth: true }
+    redirect: '/ai-intelligent-mode/projects'
   },
   {
     path: '/login',
