@@ -1,11 +1,14 @@
-<template>
+import re
+
+content = """<template>
   <div class="layout">
     <el-container class="app-wrapper">
       <!-- 顶部导航栏 -->
       <el-header height="64px" class="app-header">
         <div class="header-left">
           <div class="logo" @click="router.push('/home')">
-            <img :src="logoImage" alt="TestHub" class="logo-img" />
+            <img :src="logoSvg" alt="TestHub" class="logo-img" />
+            <span class="logo-text">TestHub</span>
           </div>
           
           <el-menu
@@ -195,17 +198,12 @@ import {
   Odometer, Timer, Setting, AlarmClock, Bell, Aim, Edit, Cpu, ArrowDown, Cellphone, Connection, FolderOpened, User, SwitchButton
 } from '@element-plus/icons-vue'
 import logoSvg from '@/assets/images/logo.svg'
-import logoHomePng from '@/assets/images/logo_home.png'
 
 const router = useRouter()
 const route = useRoute()
 const userStore = useUserStore()
 const appStore = useAppStore()
 const { t } = useI18n()
-
-const logoImage = computed(() => {
-  return logoHomePng
-})
 
 const defaultAvatar = 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
 
@@ -324,8 +322,8 @@ const handleCommand = (command) => {
       }
 
       .logo-img {
-        height: 40px;
-        object-fit: contain;
+        height: 32px;
+        margin-right: 12px;
       }
 
       .logo-text {
@@ -551,3 +549,8 @@ const handleCommand = (command) => {
   }
 }
 </style>
+"""
+
+with open('frontend/src/layout/index.vue', 'w') as f:
+    f.write(content)
+
