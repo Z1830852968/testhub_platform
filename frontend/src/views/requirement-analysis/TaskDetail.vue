@@ -561,6 +561,15 @@ export default {
         // Keep adopted cases in the list for multiple adoptions
         // this.testCases = this.testCases.filter(tc => !this.selectedCases.includes(tc))
 
+        // 询问用户是否跳转到用例管理页面
+        ElMessageBox.confirm('是否立即前往测试用例管理页面查看？', '采纳成功', {
+          confirmButtonText: '前往查看',
+          cancelButtonText: '留在当前页',
+          type: 'success'
+        }).then(() => {
+          this.$router.push('/ai-intelligent-mode/testcases')
+        }).catch(() => {})
+
       } catch (error) {
         console.error('Batch adopt failed:', error)
         ElMessage.error(this.$t('taskDetail.batchAdoptFailed') + ': ' + (error.response?.data?.message || error.message))

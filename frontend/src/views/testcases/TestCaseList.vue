@@ -15,7 +15,7 @@
           <el-icon><Download /></el-icon>
           {{ $t('testcase.exportExcel') }}
         </el-button>
-        <el-button type="primary" @click="$router.push('/ai-generation/testcases/create')">
+        <el-button type="primary" @click="$router.push('/ai-intelligent-mode/testcases/create')">
           <el-icon><Plus /></el-icon>
           {{ $t('testcase.newCase') }}
         </el-button>

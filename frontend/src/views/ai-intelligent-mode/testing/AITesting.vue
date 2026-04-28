@@ -58,6 +58,15 @@
                 <el-icon><DocumentAdd /></el-icon>
                 {{ $t('uiAutomation.ai.saveAsCase') }}
               </el-button>
+              
+              <el-button
+                type="info"
+                v-if="currentExecutionId && !running"
+                @click="viewReport"
+              >
+                <el-icon><DataAnalysis /></el-icon>
+                查看测试报告
+              </el-button>
             </el-form-item>
           </el-form>
 
@@ -138,8 +147,11 @@
 <script setup>
 import { ref, reactive, nextTick, computed } from 'vue'
 import { ElMessage } from 'element-plus'
-import { VideoPlay, DocumentAdd, CircleCheckFilled, CircleCheck, Loading, SwitchButton } from '@element-plus/icons-vue'
+import { VideoPlay, DocumentAdd, CircleCheckFilled, CircleCheck, Loading, SwitchButton, DataAnalysis } from '@element-plus/icons-vue'
 import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 import {
   runAdhocAITask,
   createAICase,
@@ -203,7 +215,10 @@ const handleRun = async () => {
   }
 }
 
-// 停止任务
+// 查看测试报告
+const viewReport = () => {
+  router.push(`/ai-intelligent-mode/execution-records?id=${currentExecutionId.value}`)
+}
 const handleStop = async () => {
   if (!currentExecutionId.value) return
 

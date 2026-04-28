@@ -442,6 +442,19 @@ export default {
     this.progressText = this.$t('requirementAnalysis.preparing')
     this.loadProjects()
     this.checkConfigStatus()
+    
+    // Auto fill requirement info if navigated from exploration results
+    if (this.$route.query.title || this.$route.query.desc) {
+      if (this.$route.query.title) {
+        this.manualInput.title = this.$route.query.title
+      }
+      if (this.$route.query.desc) {
+        this.manualInput.description = this.$route.query.desc
+      }
+      
+      // Select manual mode if not already
+      this.globalOutputMode = 'stream'
+    }
   },
 
   activated() {
@@ -1164,8 +1177,8 @@ export default {
           ElMessage.success(`测试用例已保存！已导入 ${importedCount} 条测试用例到测试用例管理系统`)
         }
 
-        // 不跳转，留在当前页面
-        // this.$router.push('/generated-testcases')
+        // 跳转至用例管理页面
+        this.$router.push('/ai-intelligent-mode/testcases')
       } catch (error) {
         console.error(this.$t('requirementAnalysis.saveFailed'), error)
         ElMessage.error(this.$t('requirementAnalysis.saveFailed') + ': ' + (error.response?.data?.error || error.message))

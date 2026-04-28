@@ -19,10 +19,17 @@
             <div v-else class="image-placeholder">暂无截图</div>
             <div style="padding: 14px;">
               <span class="title">{{ item.name }}</span>
+
               <div class="bottom clearfix">
                 <p class="desc">{{ item.description }}</p>
                 <el-link type="primary" :href="item.url" target="_blank">{{ item.url }}</el-link>
+                <div class="action-buttons" style="margin-top: 10px;">
+                  <el-button type="success" size="small" @click="generateTestCase(item)">
+                    <el-icon><MagicStick /></el-icon> 一键生成用例
+                  </el-button>
+                </div>
               </div>
+
             </div>
           </el-card>
         </el-col>
@@ -39,9 +46,13 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
+import { MagicStick } from '@element-plus/icons-vue'
 import api from '@/utils/api'
+
+const router = useRouter()
+
 
 const route = useRoute()
 const runId = ref(route.query.runId || '')
@@ -49,6 +60,17 @@ const features = ref([])
 const loading = ref(false)
 const dialogVisible = ref(false)
 const dialogImageUrl = ref('')
+
+
+const generateTestCase = (item) => {
+  router.push({
+    path: '/ai-intelligent-mode/requirement-analysis',
+    query: {
+      title: `探索发现功能: ${item.name}`,
+      desc: `页面URL: ${item.url}\n\n功能描述: ${item.description}\n\n请针对此探索出的功能生成详尽的测试用例。`
+    }
+  })
+}
 
 const loadFeatures = async () => {
   loading.value = true
