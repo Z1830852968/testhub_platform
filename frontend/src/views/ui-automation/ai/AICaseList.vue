@@ -21,22 +21,22 @@
 
       <el-table :data="cases" v-loading="loading" style="width: 100%">
         <el-table-column prop="name" :label="$t('uiAutomation.ai.caseList.caseName')" min-width="200" show-overflow-tooltip />
-        <el-table-column prop="description" :label="$t('uiAutomation.common.description')" min-width="200" show-overflow-tooltip />
+        <el-table-column prop="description" :label="$t('project.description')" min-width="200" show-overflow-tooltip />
         <el-table-column prop="task_description" :label="$t('uiAutomation.ai.caseList.taskDescription')" min-width="300" show-overflow-tooltip />
-        <el-table-column prop="created_at" :label="$t('uiAutomation.common.createTime')" width="180" :formatter="formatDate" />
-        <el-table-column :label="$t('uiAutomation.common.operation')" width="200" fixed="right">
+        <el-table-column prop="created_at" :label="$t('project.createdAt')" width="180" :formatter="formatDate" />
+        <el-table-column :label="$t('project.actions')" width="200" fixed="right">
           <template #default="{ row }">
             <el-button size="small" type="success" @click="runCase(row)">
               <el-icon><VideoPlay /></el-icon>
-              {{ $t('uiAutomation.common.run') }}
+              {{ '执行' }}
             </el-button>
             <el-button size="small" type="primary" @click="editCase(row)">
               <el-icon><Edit /></el-icon>
-              {{ $t('uiAutomation.common.edit') }}
+              {{ $t('common.edit') }}
             </el-button>
             <el-button size="small" type="danger" @click="deleteCase(row.id)">
               <el-icon><Delete /></el-icon>
-              {{ $t('uiAutomation.common.delete') }}
+              {{ $t('common.delete') }}
             </el-button>
           </template>
         </el-table-column>
@@ -59,10 +59,10 @@
     <el-dialog v-model="showEditDialog" :title="$t('uiAutomation.ai.caseList.editCase')" width="600px" :close-on-click-modal="false">
       <el-form :model="editForm" :rules="formRules" ref="editFormRef" label-width="100px">
         <el-form-item :label="$t('uiAutomation.ai.caseList.caseName')" prop="name">
-          <el-input v-model="editForm.name" :placeholder="$t('uiAutomation.ai.caseNamePlaceholder')" />
+          <el-input v-model="editForm.name" :placeholder="'请输入用例名称'" />
         </el-form-item>
-        <el-form-item :label="$t('uiAutomation.common.description')" prop="description">
-          <el-input v-model="editForm.description" type="textarea" :placeholder="$t('uiAutomation.ai.caseDescPlaceholder')" />
+        <el-form-item :label="$t('project.description')" prop="description">
+          <el-input v-model="editForm.description" type="textarea" :placeholder="'请输入用例描述'" />
         </el-form-item>
         <el-form-item :label="$t('uiAutomation.ai.caseList.taskDescription')" prop="task_description">
           <el-input
@@ -75,8 +75,8 @@
       </el-form>
       <template #footer>
         <span class="dialog-footer">
-          <el-button @click="showEditDialog = false">{{ $t('uiAutomation.common.cancel') }}</el-button>
-          <el-button type="primary" @click="confirmEdit" :loading="saving">{{ $t('uiAutomation.common.save') }}</el-button>
+          <el-button @click="showEditDialog = false">{{ $t('common.cancel') }}</el-button>
+          <el-button type="primary" @click="confirmEdit" :loading="saving">{{ $t('common.save') }}</el-button>
         </span>
       </template>
     </el-dialog>

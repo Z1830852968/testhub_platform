@@ -13,47 +13,6 @@
           text-color="#fff"
           active-text-color="#1890ff"
         >
-          <!-- AI用例生成模块菜单 -->
-          <template v-if="currentModule === 'ai-generation'">
-            <el-sub-menu index="requirement">
-              <template #title>
-                <el-icon><MagicStick /></el-icon>
-                <span>{{ $t('menu.intelligentCaseGeneration') }}</span>
-              </template>
-              <el-menu-item index="/ai-generation/requirement-analysis">{{ $t('menu.aiCaseGeneration') }}</el-menu-item>
-              <el-menu-item index="/ai-generation/generated-testcases">{{ $t('menu.aiGeneratedTestcases') }}</el-menu-item>
-            </el-sub-menu>
-            <el-menu-item index="/ai-generation/projects">
-              <el-icon><Folder /></el-icon>
-              <span>{{ $t('menu.projectManagement') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/ai-generation/testcases">
-              <el-icon><Document /></el-icon>
-              <span>{{ $t('menu.testCases') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/ai-generation/versions">
-              <el-icon><Flag /></el-icon>
-              <span>{{ $t('menu.versionManagement') }}</span>
-            </el-menu-item>
-            <el-sub-menu index="reviews">
-              <template #title>
-                <el-icon><Check /></el-icon>
-                <span>{{ $t('menu.reviewManagement') }}</span>
-              </template>
-              <el-menu-item index="/ai-generation/reviews">{{ $t('menu.reviewList') }}</el-menu-item>
-              <el-menu-item index="/ai-generation/review-templates">{{ $t('menu.reviewTemplates') }}</el-menu-item>
-            </el-sub-menu>
-
-            <el-menu-item index="/ai-generation/executions">
-              <el-icon><VideoPlay /></el-icon>
-              <span>{{ $t('menu.testPlan') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/ai-generation/reports">
-              <el-icon><DataAnalysis /></el-icon>
-              <span>{{ $t('menu.testReport') }}</span>
-            </el-menu-item>
-          </template>
-
           <!-- 接口测试模块菜单 -->
           <template v-else-if="currentModule === 'api-testing'">
             <el-menu-item index="/api-testing/dashboard">
@@ -196,19 +155,38 @@
 
           <!-- AI 智能模式模块菜单 -->
           <template v-else-if="currentModule === 'ai-intelligent-mode'">
+            <el-menu-item index="/ai-intelligent-mode/projects">
+              <el-icon><Folder /></el-icon>
+              <span>{{ $t('menu.projectManagement') }}</span>
+            </el-menu-item>
+            <el-menu-item index="/ai-intelligent-mode/requirement-analysis">
+              <el-icon><MagicStick /></el-icon>
+              <span>{{ $t('menu.aiCaseGeneration') }}</span>
+            </el-menu-item>
+            <el-menu-item index="/ai-intelligent-mode/testcases">
+              <el-icon><Document /></el-icon>
+              <span>{{ $t('menu.testCases') }}</span>
+            </el-menu-item>
             <el-menu-item index="/ai-intelligent-mode/testing">
               <el-icon><VideoPlay /></el-icon>
               <span>{{ $t('menu.aiIntelligentTesting') }}</span>
-            </el-menu-item>
-            <el-menu-item index="/ai-intelligent-mode/cases">
-              <el-icon><Document /></el-icon>
-              <span>{{ $t('menu.aiCaseManagement') }}</span>
             </el-menu-item>
             <el-menu-item index="/ai-intelligent-mode/execution-records">
               <el-icon><Timer /></el-icon>
               <span>{{ $t('menu.aiExecutionRecords') }}</span>
             </el-menu-item>
-
+            <el-menu-item index="/ai-intelligent-mode/reports">
+              <el-icon><DataAnalysis /></el-icon>
+              <span>{{ $t('menu.testReport') }}</span>
+            </el-menu-item>
+            <el-menu-item index="/ai-intelligent-mode/exploration">
+              <el-icon><Monitor /></el-icon>
+              <span>系统自动探索</span>
+            </el-menu-item>
+            <el-menu-item index="/ai-intelligent-mode/work-results">
+              <el-icon><Collection /></el-icon>
+              <span>AI工作成果</span>
+            </el-menu-item>
           </template>
 
           <!-- 配置中心模块菜单 -->
@@ -352,7 +330,6 @@ const handleLanguageChange = (lang) => {
 }
 
 const currentModule = computed(() => {
-  if (route.path.startsWith('/ai-generation')) return 'ai-generation'
   if (route.path.startsWith('/api-testing')) return 'api-testing'
   if (route.path.startsWith('/ui-automation')) return 'ui-automation'
   if (route.path.startsWith('/app-automation')) return 'app-automation'
@@ -363,7 +340,6 @@ const currentModule = computed(() => {
 
 const moduleName = computed(() => {
   const map = {
-    'ai-generation': t('modules.aiGeneration'),
     'api-testing': t('modules.apiTesting'),
     'ui-automation': t('modules.uiAutomation'),
     'app-automation': 'APP自动化测试',
@@ -376,16 +352,16 @@ const moduleName = computed(() => {
 const breadcrumbTitle = computed(() => {
   const routeMap = {
     // AI用例生成
-    '/ai-generation/requirement-analysis': t('menu.aiCaseGeneration'),
-    '/ai-generation/generated-testcases': t('menu.aiGeneratedTestcases'),
-    '/ai-generation/projects': t('menu.projectManagement'),
-    '/ai-generation/testcases': t('menu.testCases'),
-    '/ai-generation/versions': t('menu.versionManagement'),
-    '/ai-generation/reviews': t('menu.reviewList'),
-    '/ai-generation/review-templates': t('menu.reviewTemplates'),
-    '/ai-generation/testsuites': t('menu.suiteManagement'),
-    '/ai-generation/executions': t('menu.executionRecords'),
-    '/ai-generation/reports': t('menu.testReport'),
+    '/ai-intelligent-mode/requirement-analysis': t('menu.aiCaseGeneration'),
+    '/ai-intelligent-mode/generated-testcases': t('menu.aiGeneratedTestcases'),
+    '/ai-intelligent-mode/projects': t('menu.projectManagement'),
+    '/ai-intelligent-mode/testcases': t('menu.testCases'),
+    '/ai-intelligent-mode/versions': t('menu.versionManagement'),
+    '/ai-intelligent-mode/reviews': t('menu.reviewList'),
+    '/ai-intelligent-mode/review-templates': t('menu.reviewTemplates'),
+    '/ai-intelligent-mode/testsuites': t('menu.suiteManagement'),
+    '/ai-intelligent-mode/executions': t('menu.executionRecords'),
+    '/ai-intelligent-mode/reports': t('menu.testReport'),
 
     // 接口测试
     '/api-testing/dashboard': t('menu.dashboard'),
@@ -451,7 +427,7 @@ const handleCommand = (command) => {
     ElMessage.success('退出登录成功')
     router.push('/login')
   } else if (command === 'profile') {
-    router.push('/ai-generation/profile')
+    router.push('/ai-intelligent-mode/profile')
   }
 }
 </script>

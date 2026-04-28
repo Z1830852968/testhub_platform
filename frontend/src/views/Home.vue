@@ -153,12 +153,12 @@ const handleLogout = () => {
 
 const handleNavigate = (type) => {
   const routes = {
-    'ai': '/ai-generation/requirement-analysis',
+    'ai': '/ai-intelligent-mode/projects',
     'api': '/api-testing/dashboard',
     'ui': '/ui-automation/dashboard',
     'app': '/app-automation/dashboard',
     'ai-intelligent': '/ai-intelligent-mode/testing',
-    'assistant': '/ai-generation/assistant',
+    'assistant': '/ai-intelligent-mode/assistant',
     'config': '/configuration/ai-model',
     'data': '/data-factory'
   }

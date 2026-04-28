@@ -58,123 +58,6 @@ const routes = [
     meta: { requiresGuest: true }
   },
   {
-    path: '/ai-generation/assistant',
-    name: 'Assistant',
-    component: () => import('@/views/assistant/AssistantView.vue'),
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/ai-generation',
-    component: Layout,
-    meta: { requiresAuth: true },
-    children: [
-      {
-        path: '',
-        redirect: 'requirement-analysis'
-      },
-      {
-        path: 'requirement-analysis',
-        name: 'RequirementAnalysis',
-        component: () => import('@/views/requirement-analysis/RequirementAnalysisView.vue')
-      },
-      {
-        path: 'projects',
-        name: 'Projects',
-        component: ProjectList
-      },
-      {
-        path: 'projects/:id',
-        name: 'ProjectDetail',
-        component: () => import('@/views/projects/ProjectDetail.vue')
-      },
-      {
-        path: 'testcases',
-        name: 'TestCases',
-        component: () => import('@/views/testcases/TestCaseList.vue')
-      },
-      {
-        path: 'testcases/create',
-        name: 'CreateTestCase',
-        component: () => import('@/views/testcases/TestCaseForm.vue')
-      },
-      {
-        path: 'testcases/:id',
-        name: 'TestCaseDetail',
-        component: () => import('@/views/testcases/TestCaseDetail.vue')
-      },
-      {
-        path: 'testcases/:id/edit',
-        name: 'EditTestCase',
-        component: () => import('@/views/testcases/TestCaseEdit.vue')
-      },
-      {
-        path: 'versions',
-        name: 'Versions',
-        component: () => import('@/views/versions/VersionList.vue')
-      },
-      {
-        path: 'reviews',
-        name: 'Reviews',
-        component: () => import('@/views/reviews/ReviewList.vue')
-      },
-      {
-        path: 'reviews/create',
-        name: 'CreateReview',
-        component: () => import('@/views/reviews/ReviewForm.vue')
-      },
-      {
-        path: 'reviews/:id',
-        name: 'ReviewDetail',
-        component: () => import('@/views/reviews/ReviewDetail.vue')
-      },
-      {
-        path: 'reviews/:id/edit',
-        name: 'EditReview',
-        component: () => import('@/views/reviews/ReviewForm.vue')
-      },
-      {
-        path: 'review-templates',
-        name: 'ReviewTemplates',
-        component: () => import('@/views/reviews/ReviewTemplateList.vue')
-      },
-      {
-        path: 'testsuites',
-        name: 'TestSuites',
-        component: () => import('@/views/testsuites/TestSuiteList.vue')
-      },
-      {
-        path: 'executions',
-        name: 'Executions',
-        component: () => import('@/views/executions/ExecutionListView.vue')
-      },
-      {
-        path: 'executions/:id',
-        name: 'ExecutionDetail',
-        component: () => import('@/views/executions/ExecutionDetailView.vue')
-      },
-      {
-        path: 'reports',
-        name: 'AiTestReport',
-        component: () => import('@/views/reports/AiTestReport.vue')
-      },
-      {
-        path: 'generated-testcases',
-        name: 'GeneratedTestCases',
-        component: () => import('@/views/requirement-analysis/GeneratedTestCaseList.vue')
-      },
-      {
-        path: 'task-detail/:taskId',
-        name: 'TaskDetail',
-        component: () => import('@/views/requirement-analysis/TaskDetail.vue')
-      },
-      {
-        path: 'profile',
-        name: 'Profile',
-        component: () => import('@/views/profile/UserProfile.vue')
-      }
-    ]
-  },
-  {
     path: '/api-testing',
     component: Layout,
     meta: { requiresAuth: true },
@@ -313,7 +196,42 @@ const routes = [
     children: [
       {
         path: '',
-        redirect: 'testing'
+        redirect: 'projects'
+      },
+      {
+        path: 'projects',
+        name: 'Projects',
+        component: ProjectList
+      },
+      {
+        path: 'projects/:id',
+        name: 'ProjectDetail',
+        component: () => import('@/views/projects/ProjectDetail.vue')
+      },
+      {
+        path: 'requirement-analysis',
+        name: 'RequirementAnalysis',
+        component: () => import('@/views/requirement-analysis/RequirementAnalysisView.vue')
+      },
+      {
+        path: 'testcases',
+        name: 'TestCases',
+        component: () => import('@/views/testcases/TestCaseList.vue')
+      },
+      {
+        path: 'testcases/create',
+        name: 'CreateTestCase',
+        component: () => import('@/views/testcases/TestCaseForm.vue')
+      },
+      {
+        path: 'testcases/:id',
+        name: 'TestCaseDetail',
+        component: () => import('@/views/testcases/TestCaseDetail.vue')
+      },
+      {
+        path: 'testcases/:id/edit',
+        name: 'EditTestCase',
+        component: () => import('@/views/testcases/TestCaseEdit.vue')
       },
       {
         path: 'testing',
@@ -329,6 +247,81 @@ const routes = [
         path: 'execution-records',
         name: 'AIExecutionRecords',
         component: UiAIExecutionRecords
+      },
+      {
+        path: 'versions',
+        name: 'Versions',
+        component: () => import('@/views/versions/VersionList.vue')
+      },
+      {
+        path: 'reviews',
+        name: 'Reviews',
+        component: () => import('@/views/reviews/ReviewList.vue')
+      },
+      {
+        path: 'reviews/create',
+        name: 'CreateReview',
+        component: () => import('@/views/reviews/ReviewForm.vue')
+      },
+      {
+        path: 'reviews/:id',
+        name: 'ReviewDetail',
+        component: () => import('@/views/reviews/ReviewDetail.vue')
+      },
+      {
+        path: 'reviews/:id/edit',
+        name: 'EditReview',
+        component: () => import('@/views/reviews/ReviewForm.vue')
+      },
+      {
+        path: 'review-templates',
+        name: 'ReviewTemplates',
+        component: () => import('@/views/reviews/ReviewTemplateList.vue')
+      },
+      {
+        path: 'testsuites',
+        name: 'TestSuites',
+        component: () => import('@/views/testsuites/TestSuiteList.vue')
+      },
+      {
+        path: 'executions',
+        name: 'Executions',
+        component: () => import('@/views/executions/ExecutionListView.vue')
+      },
+      {
+        path: 'executions/:id',
+        name: 'ExecutionDetail',
+        component: () => import('@/views/executions/ExecutionDetailView.vue')
+      },
+      {
+        path: 'reports',
+        name: 'AiTestReport',
+        component: () => import('@/views/reports/AiTestReport.vue')
+      },
+      {
+        path: 'generated-testcases',
+        name: 'GeneratedTestCases',
+        component: () => import('@/views/requirement-analysis/GeneratedTestCaseList.vue')
+      },
+      {
+        path: 'task-detail/:taskId',
+        name: 'TaskDetail',
+        component: () => import('@/views/requirement-analysis/TaskDetail.vue')
+      },
+      {
+        path: 'profile',
+        name: 'Profile',
+        component: () => import('@/views/profile/UserProfile.vue')
+      },
+      {
+        path: 'exploration',
+        name: 'SystemExploration',
+        component: () => import('@/views/ai-intelligent-mode/AISystemExploration.vue')
+      },
+      {
+        path: 'work-results',
+        name: 'AIWorkResults',
+        component: () => import('@/views/ai-intelligent-mode/AIWorkResults.vue')
       }
     ]
   },

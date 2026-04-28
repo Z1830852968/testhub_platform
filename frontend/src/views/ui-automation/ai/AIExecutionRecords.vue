@@ -45,7 +45,7 @@
         </el-table-column>
         <el-table-column prop="start_time" :label="$t('uiAutomation.ai.executionRecords.startTime')" width="180" :formatter="formatDate" />
         <el-table-column prop="executed_by.username" :label="$t('uiAutomation.ai.executionRecords.executor')" width="120" />
-        <el-table-column :label="$t('uiAutomation.common.operation')" width="200" fixed="right">
+        <el-table-column :label="$t('project.actions')" width="200" fixed="right">
           <template #default="{ row }">
             <el-button size="small" @click="viewDetail(row)">
               {{ $t('uiAutomation.ai.executionRecords.viewDetail') }}

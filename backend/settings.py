@@ -54,6 +54,7 @@ LOCAL_APPS = [
     'apps.app_automation.apps.AppAutomationConfig',  # APP自动化测试
     'apps.core',
     'apps.data_factory',
+    'apps.explorations',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -93,16 +94,8 @@ ASGI_APPLICATION = 'backend.asgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME', default='testhub'),
-        'USER': config('DB_USER', default='root'),
-        'PASSWORD': config('DB_PASSWORD', default=''),  # 移除硬编码默认密码
-        'HOST': config('DB_HOST', default='127.0.0.1'),
-        'PORT': config('DB_PORT', default='3306'),
-        'OPTIONS': {
-            'charset': 'utf8mb4',
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -282,8 +275,8 @@ SPECTACULAR_SETTINGS = {
 }
 
 # Celery Configuration
-CELERY_BROKER_URL = config('REDIS_URL', default='redis://:1234@127.0.0.1:6379/0')
-CELERY_RESULT_BACKEND = config('REDIS_URL', default='redis://:1234@127.0.0.1:6379/0')
+CELERY_BROKER_URL = config('REDIS_URL', default='redis://127.0.0.1:6379/0')
+CELERY_RESULT_BACKEND = config('REDIS_URL', default='redis://127.0.0.1:6379/0')
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 # Channels Configuration
@@ -291,7 +284,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [config('REDIS_URL', default='redis://:1234@127.0.0.1:6379/0')],
+            'hosts': [config('REDIS_URL', default='redis://127.0.0.1:6379/0')],
         },
     },
 }
