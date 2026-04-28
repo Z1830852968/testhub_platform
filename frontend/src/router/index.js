@@ -6,9 +6,6 @@ import Login from '@/views/auth/Login.vue'
 import Register from '@/views/auth/Register.vue'
 import Layout from '@/layout/index.vue'
 import ProjectList from '@/views/projects/ProjectList.vue'
-import Home from '@/views/Home.vue'
-import DataFactory from '@/views/data-factory/DataFactory.vue'
-import NotificationLogs from '@/views/notification/NotificationLogs.vue'
 
 /** @type {import('vue-router').RouteRecordRaw[]} */
 const routes = [
@@ -33,62 +30,185 @@ const routes = [
     meta: { requiresGuest: true }
   },
   {
-    path: '/app-automation',
+    path: '/ai-intelligent-mode',
     component: Layout,
     meta: { requiresAuth: true },
     children: [
       {
         path: '',
-        redirect: 'dashboard'
-      },
-      {
-        path: 'dashboard',
-        name: 'AppAutomationDashboard',
+        redirect: 'projects'
       },
       {
         path: 'projects',
-        name: 'AppProjectList',
+        name: 'Projects',
+        component: ProjectList
       },
       {
-        path: 'devices',
-        name: 'AppDeviceList',
+        path: 'projects/:id',
+        name: 'ProjectDetail',
+        component: () => import('@/views/projects/ProjectDetail.vue')
       },
       {
-        path: 'packages',
-        name: 'AppPackageList',
+        path: 'requirement-analysis',
+        name: 'RequirementAnalysis',
+        component: () => import('@/views/requirement-analysis/RequirementAnalysisView.vue')
       },
       {
-        path: 'elements',
-        name: 'AppElementList',
+        path: 'testcases',
+        name: 'TestCases',
+        component: () => import('@/views/testcases/TestCaseList.vue')
       },
       {
-        path: 'scene-builder',
-        name: 'AppSceneBuilder',
-        meta: { title: '用例编排' }
+        path: 'testcases/create',
+        name: 'CreateTestCase',
+        component: () => import('@/views/testcases/TestCaseForm.vue')
       },
       {
-        path: 'test-cases',
-        name: 'AppTestCaseList',
+        path: 'testcases/:id',
+        name: 'TestCaseDetail',
+        component: () => import('@/views/testcases/TestCaseDetail.vue')
       },
       {
-        path: 'test-suites',
-        name: 'AppTestSuiteList',
+        path: 'testcases/:id/edit',
+        name: 'EditTestCase',
+        component: () => import('@/views/testcases/TestCaseEdit.vue')
       },
       {
-        path: 'scheduled-tasks',
-        name: 'AppScheduledTasks',
+        path: 'testing',
+        name: 'AITesting',
+        component: () => import('@/views/ai-intelligent-mode/testing/AITesting.vue')
       },
       {
-        path: 'notification-logs',
-        name: 'AppNotificationLogs',
+        path: 'cases',
+        name: 'AICaseList',
+        component: () => import('@/views/ai-intelligent-mode/testing/AICaseList.vue')
+      },
+      {
+        path: 'execution-records',
+        name: 'AIExecutionRecords',
+        component: () => import('@/views/ai-intelligent-mode/testing/AIExecutionRecords.vue')
+      },
+      {
+        path: 'versions',
+        name: 'Versions',
+        component: () => import('@/views/versions/VersionList.vue')
+      },
+      {
+        path: 'reviews',
+        name: 'Reviews',
+        component: () => import('@/views/reviews/ReviewList.vue')
+      },
+      {
+        path: 'reviews/create',
+        name: 'CreateReview',
+        component: () => import('@/views/reviews/ReviewForm.vue')
+      },
+      {
+        path: 'reviews/:id',
+        name: 'ReviewDetail',
+        component: () => import('@/views/reviews/ReviewDetail.vue')
+      },
+      {
+        path: 'reviews/:id/edit',
+        name: 'EditReview',
+        component: () => import('@/views/reviews/ReviewForm.vue')
+      },
+      {
+        path: 'review-templates',
+        name: 'ReviewTemplates',
+        component: () => import('@/views/reviews/ReviewTemplateList.vue')
+      },
+      {
+        path: 'testsuites',
+        name: 'TestSuites',
+        component: () => import('@/views/testsuites/TestSuiteList.vue')
       },
       {
         path: 'executions',
-        name: 'AppExecutionList',
+        name: 'Executions',
+        component: () => import('@/views/executions/ExecutionListView.vue')
+      },
+      {
+        path: 'executions/:id',
+        name: 'ExecutionDetail',
+        component: () => import('@/views/executions/ExecutionDetailView.vue')
       },
       {
         path: 'reports',
-        name: 'AppReportList',
+        name: 'AiTestReport',
+        component: () => import('@/views/reports/AiTestReport.vue')
+      },
+      {
+        path: 'generated-testcases',
+        name: 'GeneratedTestCases',
+        component: () => import('@/views/requirement-analysis/GeneratedTestCaseList.vue')
+      },
+      {
+        path: 'task-detail/:taskId',
+        name: 'TaskDetail',
+        component: () => import('@/views/requirement-analysis/TaskDetail.vue')
+      },
+      {
+        path: 'profile',
+        name: 'Profile',
+        component: () => import('@/views/profile/UserProfile.vue')
+      },
+      {
+        path: 'exploration',
+        name: 'SystemExploration',
+        component: () => import('@/views/ai-intelligent-mode/AISystemExploration.vue')
+      },
+      {
+        path: 'work-results',
+        name: 'AIWorkResults',
+        component: () => import('@/views/ai-intelligent-mode/AIWorkResults.vue')
+      }
+    ]
+  },
+  {
+    path: '/configuration',
+    component: Layout,
+    meta: { requiresAuth: true },
+    children: [
+      {
+        path: 'ai-model',
+        name: 'AiModelConfig',
+        component: () => import('@/views/configuration/AIIntelligentModeConfig.vue')
+      },
+      {
+        path: 'prompt-config',
+        name: 'PromptConfig',
+        component: () => import('@/views/configuration/ConfigurationCenter.vue')
+      },
+      {
+        path: 'generation-config',
+        name: 'GenerationConfig',
+        component: () => import('@/views/configuration/ConfigurationCenter.vue')
+      },
+      {
+        path: 'ui-env',
+        name: 'UiEnvConfig',
+        component: () => import('@/views/configuration/UIEnvironmentConfig.vue')
+      },
+      {
+        path: 'app-env',
+        name: 'AppEnvConfig',
+        component: () => import('@/views/configuration/ConfigurationCenter.vue')
+      },
+      {
+        path: 'ai-mode',
+        name: 'AiModeConfig',
+        component: () => import('@/views/configuration/ConfigurationCenter.vue')
+      },
+      {
+        path: 'scheduled-task',
+        name: 'ScheduledTaskConfig',
+        component: () => import('@/views/configuration/ConfigurationCenter.vue')
+      },
+      {
+        path: 'dify',
+        name: 'DifyConfig',
+        component: () => import('@/views/configuration/DifyConfig.vue')
       }
     ]
   }
@@ -102,42 +222,22 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const userStore = useUserStore()
 
-  console.log('路由守卫:', {
-    to: to.path,
-    from: from.path,
-    hasToken: !!userStore.accessToken,
-    hasUser: !!userStore.user,
-    isAuthenticated: userStore.isAuthenticated
-  })
-
   // 只在应用初始化或从登录页面导航时初始化认证
   if (!userStore.user && userStore.accessToken) {
     try {
-      console.log('初始化认证...')
       await userStore.initAuth()
-      console.log('认证初始化完成:', {
-        hasUser: !!userStore.user,
-        isAuthenticated: userStore.isAuthenticated
-      })
     } catch (error) {
       console.error('认证初始化失败:', error)
     }
   }
 
   if (to.meta.requiresAuth && !userStore.isAuthenticated) {
-    console.log('需要认证但未认证，跳转到登录页')
     next('/login')
   } else if (to.meta.requiresGuest && userStore.isAuthenticated) {
-    console.log('访客页面但已认证，跳转到项目页')
-    next('/home')
+    next('/ai-intelligent-mode/projects')
   } else {
-    console.log('路由守卫通过，继续导航')
     next()
   }
-})
-
-router.afterEach((to, from) => {
-  console.log(`Navigated from ${from.path} to ${to.path}`)
 })
 
 export default router
