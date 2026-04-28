@@ -10,14 +10,16 @@
           <div class="section-title">{{ $t('uiAutomation.ai.taskInput') }}</div>
           <el-form :model="taskForm" label-position="top">
             <el-form-item :label="$t('uiAutomation.ai.taskDescription')" required>
-              <el-input
-                v-model="taskForm.description"
-                type="textarea"
-                :rows="10"
-                :placeholder="$t('uiAutomation.ai.taskPlaceholder')"
-                maxlength="2000"
-                show-word-limit
-              />
+              <div :class="{'highlight-textarea': isFromGeneration}" style="width: 100%">
+                <el-input
+                  v-model="taskForm.description"
+                  type="textarea"
+                  :rows="10"
+                  :placeholder="$t('uiAutomation.ai.taskPlaceholder')"
+                  maxlength="5000"
+                  show-word-limit
+                />
+              </div>
             </el-form-item>
 
             <el-form-item :label="$t('uiAutomation.ai.gifRecording')">
@@ -145,14 +147,15 @@
 </template>
 
 <script setup>
-import { ref, reactive, nextTick, computed } from 'vue'
+import { ref, reactive, nextTick, computed, onMounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { VideoPlay, DocumentAdd, CircleCheckFilled, CircleCheck, Loading, SwitchButton, DataAnalysis } from '@element-plus/icons-vue'
 import { useI18n } from 'vue-i18n'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import request from '@/utils/api'
 
 const router = useRouter()
+const route = useRoute()
 import {
   runAdhocAITask,
   createAICase,
@@ -169,10 +172,28 @@ const logs = ref('')
 const plannedTasks = ref([])
 const currentExecutionId = ref(null)
 const logContainer = ref(null)
+const isFromGeneration = ref(false)
 
 const taskForm = reactive({
   description: '',
   enableGif: true  // GIF录制开关，默认开启
+})
+
+onMounted(() => {
+  if (route.query.from === 'generation') {
+    const context = sessionStorage.getItem('ai_test_case_context')
+    if (context) {
+      taskForm.description = "请执行以下测试用例：\n\n" + context
+      isFromGeneration.value = true
+      ElMessage.success('已自动为您带入生成的测试用例上下文')
+      sessionStorage.removeItem('ai_test_case_context')
+      
+      // 3秒后移除高亮
+      setTimeout(() => {
+        isFromGeneration.value = false
+      }, 3000)
+    }
+  }
 })
 
 const showSaveDialog = ref(false)
@@ -472,5 +493,15 @@ const confirmSaveCase = async () => {
     font-size: 14px;
     line-height: 1.5;
   }
+}
+
+@keyframes textarea-highlight {
+  0% { box-shadow: 0 0 0 0 rgba(103, 194, 58, 0.7); border-radius: 4px; }
+  70% { box-shadow: 0 0 0 10px rgba(103, 194, 58, 0); border-radius: 4px; }
+  100% { box-shadow: 0 0 0 0 rgba(103, 194, 58, 0); border-radius: 4px; }
+}
+
+.highlight-textarea {
+  animation: textarea-highlight 1.5s ease-out 2;
 }
 </style>

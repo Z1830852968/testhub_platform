@@ -116,7 +116,7 @@
     <div class="main-content">
       <!-- 手动输入需求描述区域 -->
       <div class="manual-input-section" v-if="!isGenerating && !showResults">
-        <div class="manual-input-card">
+        <div class="manual-input-card" :class="{'highlight-pulse': isFromExploration}">
           <h2>{{ $t('requirementAnalysis.manualInputTitle') }}</h2>
           <div class="input-form">
             <div class="form-group">
@@ -303,6 +303,9 @@
 
           <!-- 任务完成后的操作按钮 -->
           <div v-if="showResults" class="completion-actions">
+            <button class="execute-btn" @click="goToAutoExecution">
+              <span>🚀 {{ $t('requirementAnalysis.oneClickExecute') || '一键自动执行' }}</span>
+            </button>
             <button class="download-btn" @click="downloadTestCases">
               <span>📥 {{ $t('requirementAnalysis.downloadExcel') }}</span>
             </button>
@@ -374,9 +377,12 @@ export default {
       eventSource: null,  // SSE连接
       streamedContent: '',  // 流式接收的内容
       streamedReviewContent: '',  // 流式接收的评审内容
-      finalTestCases: '',  // 最终版用例
+      finalTestCases: '',  // 最终版用例显示区域
       hasShownCompletionMessage: false,  // 是否已经显示过完成消息
       showReviewStep: true,  // 是否显示评审步骤（根据生成配置决定）
+      
+      // UI增强
+      isFromExploration: false,
 
       // 生成结果
       showResults: false,
@@ -445,6 +451,8 @@ export default {
     
     // Auto fill requirement info if navigated from exploration results
     if (this.$route.query.title || this.$route.query.desc) {
+      this.isFromExploration = true
+      
       if (this.$route.query.title) {
         this.manualInput.title = this.$route.query.title
       }
@@ -454,6 +462,14 @@ export default {
       
       // Select manual mode if not already
       this.globalOutputMode = 'stream'
+      
+      // 提示用户上下文已带入
+      ElMessage.success('已自动带入 AI 探索上下文')
+      
+      // 3秒后移除高亮动画
+      setTimeout(() => {
+        this.isFromExploration = false
+      }, 3000)
     }
   },
 
@@ -1064,6 +1080,19 @@ export default {
       this.isGenerating = false
       this.currentTaskId = null
       ElMessage.info(this.$t('requirementAnalysis.generationCancelled'))
+    },
+
+    // 跳转到自动执行页面
+    goToAutoExecution() {
+      // 获取最终用例内容，如果为空则尝试使用生成结果
+      const contextContent = this.finalTestCases || this.streamedContent || (this.generationResult && this.generationResult.final_test_cases);
+      if (!contextContent) {
+        ElMessage.warning('用例内容为空，无法一键执行');
+        return;
+      }
+      // 使用 sessionStorage 传递上下文
+      sessionStorage.setItem('ai_test_case_context', contextContent);
+      this.$router.push('/ai-intelligent-mode/testing?from=generation');
     },
 
     // 下载测试用例为xlsx文件
@@ -1804,6 +1833,17 @@ export default {
   font-size: 1.5rem;
 }
 
+@keyframes highlight-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7); border-color: #3498db; }
+  70% { box-shadow: 0 0 0 10px rgba(52, 152, 219, 0); border-color: #3498db; }
+  100% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0); border-color: #e1e8ed; }
+}
+
+.highlight-pulse {
+  animation: highlight-pulse 1.5s ease-out 2;
+  border-color: #3498db !important;
+}
+
 .form-group {
   margin-bottom: 20px;
 }
@@ -2294,6 +2334,18 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.completion-actions .execute-btn {
+  background: #8e44ad;
+  color: white;
+  font-size: 1rem;
+}
+
+.completion-actions .execute-btn:hover {
+  background: #732d91;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(142, 68, 173, 0.3);
 }
 
 .completion-actions .download-btn {
